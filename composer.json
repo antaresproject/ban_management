@@ -1,0 +1,14 @@
+{
+    "name": "components/ban_management",
+    "description": "Antares Ban Management Component",
+    "authors": [
+        {
+            "name": "Marcin Kozak",
+            "email": "contact@antaresproject.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "m6web/firewall": "dev-master"
+    }
+}

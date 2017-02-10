@@ -1,0 +1,16 @@
+{
+    "name": "ban_management",
+    "full_name": "Ban Management",
+    "description": "Ban Management Antares",
+    "author": "Marcin Kozak",
+    "url": "https://antaresproject.io",
+    "version": "0.9.0",
+    "provides": [
+        "Antares\\BanManagement\\BanManagementServiceProvider"
+    ],
+    "options": {
+        "cookie_tracking": true,
+        "max_failed_attempts": 50,
+        "attempts_decay_minutes": 14440
+    }
+}
