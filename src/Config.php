@@ -56,7 +56,7 @@ class Config
      */
     public function getMaxFailedAttempts()
     {
-        return (int) array_get($this->options, 'max_failed_attempts', 50);
+        return (int) array_get($this->options, 'max_failed_attempts', 5);
     }
 
     /**

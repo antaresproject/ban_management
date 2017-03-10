@@ -82,7 +82,7 @@ class ConfigStoreListener
         try {
             $options     = (array) array_get($data, 'options', []);
             $ipWhitelist = array_get($data, 'rules.ip-whitelist', '');
-            $rules       = array_filter(explode("\r\n", $ipWhitelist));
+            $rules       = array_filter(explode(",", $ipWhitelist));
 
             $this->storeExtensionOptions($options);
             $this->rulesProcessor->storeWhiteList($rules);

@@ -18,19 +18,20 @@
  * @link       http://antaresproject.io
  */
 return [
-    'rules'        => [
+    'rules'                => [
         'create' => 'Create a new ban rule',
         'update' => 'Edit ban rule',
     ],
-    'bannedemails' => [
+    'bannedemails'         => [
         'create' => 'Create a new banned email',
         'update' => 'Edit banned email',
     ],
-    'menu'         => [
+    'menu'                 => [
         'add-rule'         => 'Add rule',
         'add-banned-email' => 'Add banned email',
     ],
-    'config'       => [
+    'config'               => [
         'title' => 'Ban Management Configuration',
     ],
+    'go_to_ban_management' => 'Go to Ban Management'
 ];

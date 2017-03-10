@@ -20,12 +20,12 @@
 
 namespace Antares\BanManagement\Http\Handlers;
 
-use Antares\BanManagement\Contracts\RuleContract;
 use Antares\BanManagement\Processor\RulesProcessor;
+use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Html\Form\Grid as FormGrid;
 use Antares\BanManagement\Config;
 use Antares\Html\Form\FormBuilder;
 use Antares\Html\Form\Fieldset;
-use Antares\Html\Form\Grid as FormGrid;
 use Illuminate\Http\Request;
 
 class SimpleConfig
@@ -96,7 +96,15 @@ class SimpleConfig
 
                 $fieldset->control('input:textarea', 'ban-management[rules][ip-whitelist]')
                         ->value(implode("\r\n", $rules))
-                        ->label(trans('antares/ban_management::label.config.ip-whitelist'));
+                        ->label(trans('antares/ban_management::label.config.ip-whitelist'))
+                        ->attributes(['rows' => 5, 'cols' => 50])
+                        ->help(trans('antares/ban_management::label.config.ip_whitelist_help'));
+
+                $fieldset->control('input:text', 'cancel')
+                        ->label('')
+                        ->field(function() {
+                            return app('html')->link(handles("antares::ban_management/rules/datatable"), trans('antares/ban_management::title.go_to_ban_management'));
+                        });
             });
         });
     }

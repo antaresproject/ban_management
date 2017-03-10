@@ -10,7 +10,7 @@
     ],
     "options": {
         "cookie_tracking": true,
-        "max_failed_attempts": 50,
+        "max_failed_attempts": 5,
         "attempts_decay_minutes": 14440
     }
 }
