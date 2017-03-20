@@ -83,11 +83,12 @@ class RuleForm
      */
     public function build(Presenter $listener, Rule $rule)
     {
-//        vdump(handles('antares::ban_management/rules/update/'));
-//        exit;
+
         publish('ban_management', 'assets.scripts');
         return $this->form->of('antares.ban_management.rules', function(FormGrid $form) use($listener, $rule) {
-                    $url  = $rule->exists ? handles('ban_management.rules.update', compact('rule')) : handles('ban_management.rules.store');
+
+                    $url = $rule->exists ? handles('ban_management.rules.update', compact('rule')) : handles('ban_management.rules.store');
+
                     $attr = ['method' => $rule->exists ? 'PUT' : 'POST'];
 
                     $form->setup($listener, $url, $rule, $attr);
