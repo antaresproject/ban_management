@@ -58,7 +58,7 @@ class RulesDataTable extends DataTable
 
         if (request()->ajax()) {
             $columns = request()->get('columns', []);
-            $all     = array_where($columns, function($index, $item) {
+            $all     = array_where($columns, function($item, $index) {
                 return array_get($item, 'data') === 'status' AND array_get($item, 'search.value') === 'all';
             });
 
@@ -86,7 +86,7 @@ class RulesDataTable extends DataTable
             return false;
         } else {
             $columns = request()->get('columns', []);
-            $found   = array_where($columns, function($index, $item) {
+            $found   = array_where($columns, function($item, $index) {
                 return strlen(array_get($item, 'search.value')) > 0;
             });
             if (empty($found)) {
@@ -185,28 +185,26 @@ class RulesDataTable extends DataTable
                         ->addColumn(['data' => 'expired_at', 'name' => 'expired_at', 'title' => trans('antares/ban_management::datagrid.header.expired_at')])
                         ->addAction(['name' => 'edit', 'title' => '', 'class' => 'mass-actions dt-actions'])
                         ->setDeferedData()
-                        ->addGroupSelect($this->statusesSelect());
+                        ->addGroupSelect($this->statuses(), 3, 'active', [
+                            'data-prefix'            => '',
+                            'data-selectAR--mdl-big' => "true",
+                            'data-column'            => 3,
+                            'class'                  => 'ban_management-select-status mr24 select2--prefix',
+        ]);
     }
 
     /**
      * Creates select for statuses
      *
-     * @return string
+     * @return array
      */
-    protected function statusesSelect()
+    protected function statuses()
     {
-        $selected = request()->ajax() ? null : 'active';
-
-        return Form::select('status', [
-                    'all'     => trans('antares/ban_management::statuses.all'),
-                    'active'  => trans('antares/ban_management::statuses.active'),
-                    'expired' => trans('antares/ban_management::statuses.expired'),
-                        ], $selected, [
-                    'data-prefix'            => '',
-                    'data-selectAR--mdl-big' => "true",
-                    'data-column'            => 3,
-                    'class'                  => 'ban_management-select-status mr24 select2--prefix',
-        ]);
+        return [
+            'all'     => trans('antares/ban_management::statuses.all'),
+            'active'  => trans('antares/ban_management::statuses.active'),
+            'expired' => trans('antares/ban_management::statuses.expired'),
+        ];
     }
 
     /**

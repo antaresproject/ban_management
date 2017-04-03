@@ -128,13 +128,11 @@ class BanManagementServiceProvider extends ModuleServiceProvider
 
     /**
      * Boot the extension.
-     *
-     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
-
+        parent::boot();
+        $router = $this->app->make(Router::class);
         $this->app->make('view')->composer('antares/ban_management::*', BansPlaceholder::class);
 
         if ($this->app->make(Config::class)->hasCookieTracking()) {
