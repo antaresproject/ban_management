@@ -205,7 +205,7 @@ class BannedEmailsController extends AdminController implements BannedEmailListe
      */
     public function updateBannedEmailFailedValidation($errors, $id)
     {
-        $url = handles('ban_management.bannedemails.edit', compact('id'));
+        $url = handles('antares::ban_management/bannedemails/edit/' . $id);
         return $this->redirectWithErrors($url, $errors);
     }
 

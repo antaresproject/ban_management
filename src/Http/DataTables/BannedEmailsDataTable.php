@@ -64,9 +64,9 @@ class BannedEmailsDataTable extends DataTable
             }
         }
 
-        if (($where = $this->getDefaultWhere()) !== false) {
-            $query->where($where);
-        }
+//        if (($where = $this->getDefaultWhere()) !== false) {
+//            $query->where($where);
+//        }
 
         return $query;
     }
@@ -213,11 +213,11 @@ class BannedEmailsDataTable extends DataTable
             $html = app('html');
 
             if ($canUpdate) {
-                $url    = handles('ban_management.bannedemails.edit', ['id' => $row->id]);
+                $url    = handles('antares::ban_management/bannedemails/edit/' . $row->id);
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.edit'), ['data-icon' => 'edit']));
             }
             if ($canDelete) {
-                $url    = handles('ban_management.bannedemails.destroy', ['id' => $row->id]);
+                $url    = route('bannedemails.destroy', ['id' => $row->id]);
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.delete'), [
                             'data-icon'        => 'delete',
                             'class'            => 'triggerable confirm',

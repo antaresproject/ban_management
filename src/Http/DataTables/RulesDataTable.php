@@ -221,11 +221,11 @@ class RulesDataTable extends DataTable
             $html = app('html');
 
             if ($canUpdate) {
-                $url    = handles('ban_management.rules.edit', ['id' => $row->id]);
+                $url    = handles('antares::ban_management/rules/' . $row->id . '/edit');
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.edit'), ['data-icon' => 'edit']));
             }
             if ($canDelete) {
-                $url    = handles('ban_management.rules.destroy', ['id' => $row->id]);
+                $url    = handles('antares::ban_management/rules/' . $row->id . '/delete');
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.delete'), [
                             'data-icon'        => 'delete',
                             'class'            => 'triggerable confirm',

@@ -65,7 +65,7 @@ class BannedEmailForm
     public function build(Presenter $listener, BannedEmail $bannedEmail)
     {
         return $this->form->of('antares.ban_management.banned-emails', function(FormGrid $form) use($listener, $bannedEmail) {
-                    $url = $bannedEmail->exists ? handles('ban_management.bannedemails.update', compact('bannedEmail')) : handles('ban_management.bannedemails.store');
+                    $url = $bannedEmail->exists ? route('bannedemails.update', compact('bannedEmail')) : route('bannedemails.store');
 
                     $attr = ['method' => $bannedEmail->exists ? 'PUT' : 'POST'];
 

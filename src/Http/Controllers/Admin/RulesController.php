@@ -203,7 +203,7 @@ class RulesController extends AdminController implements RuleListener
      */
     public function updateRuleFailedValidation($errors, $id)
     {
-        $url = handles('ban_management.rules.edit', compact('id'));
+        $url = handles('antares::ban_management/rules/edit/' . $id);
         return $this->redirectWithErrors($url, $errors);
     }
 
