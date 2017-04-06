@@ -10,7 +10,7 @@
         }
     ],
     "extra": {
-        "class": "Installer\Composer\Extension\\ComponentPlugin"
+        "class": "Installer\\Composer\\Extension\\ComponentPlugin"
     },
     "require": {
         "php": ">=7.0.1",
