@@ -7,7 +7,6 @@ return [
         'attempts_decay_minutes'  => 14440,
     ],
     'rules' => [
-        'cookie_tracking'  => 'required',
         'max_failed_attempts' => 'required|integer',
         'attempts_decay_minutes' => 'required|integer'
     ],
