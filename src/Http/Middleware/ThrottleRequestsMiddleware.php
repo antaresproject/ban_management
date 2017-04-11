@@ -73,8 +73,6 @@ class ThrottleRequestsMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-
         $key          = $request->fingerprint();
         $maxAttempts  = $this->config->getMaxFailedAttempts();
         $decayMinutes = $this->config->getAttemptsDecay();
