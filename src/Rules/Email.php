@@ -100,7 +100,8 @@ class Email extends AbstractEntry
             $template = '';
         }
 
-        $template = str_replace(['.', '+', '-'], ['\.', '\+', '\-'], $template);
+        //$template = str_replace(['.', '+', '-'], ['\.', '\+', '\-'], $template);
+
         return sprintf('/^%s$/', $template);
     }
 
