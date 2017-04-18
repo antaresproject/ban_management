@@ -10,4 +10,5 @@ return [
         'max_failed_attempts' => 'required|integer',
         'attempts_decay_minutes' => 'required|integer'
     ],
+    'custom_url' => area() . '/settings/security'
 ];
