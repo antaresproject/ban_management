@@ -20,10 +20,10 @@
 
 namespace Antares\BanManagement\Repositories;
 
-use Antares\Testing\TestCase;
 use Antares\BanManagement\Model\Rule;
-use CreateBanRulesTables;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Antares\Testing\TestCase;
 use Faker\Factory;
 
 class RulesRepositoryTest extends TestCase
@@ -37,14 +37,12 @@ class RulesRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        $this->app->make(CreateBanRulesTables::class)->up();
-
         $this->repository = new RulesRepository(new Rule);
     }
 
     public function testAllMethod()
     {
+        DB::beginTransaction();
         $faker = Factory::create();
 
         foreach (range(0, 20) as $index) {
@@ -53,15 +51,15 @@ class RulesRepositoryTest extends TestCase
                 'reason' => $faker->paragraph,
             ]);
         }
-
         $models = $this->repository->all();
-
         $this->assertCount(Rule::count(), $models);
         $this->assertInstanceOf(Collection::class, $models);
+        DB::rollback();
     }
 
     public function testDatatableMethod()
     {
+        DB::beginTransaction();
         $faker = Factory::create();
 
         foreach (range(0, 20) as $index) {
@@ -70,14 +68,14 @@ class RulesRepositoryTest extends TestCase
                 'reason' => $faker->paragraph,
             ]);
         }
-
         $models = $this->repository->datatable();
-
         $this->assertInstanceOf(\Illuminate\Database\Eloquent\Builder::class, $models);
+        DB::rollback();
     }
 
     public function testEnabledMethod()
     {
+        DB::beginTransaction();
         $faker = Factory::create();
 
         foreach (range(0, 20) as $index) {
@@ -92,10 +90,13 @@ class RulesRepositoryTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $models);
         $this->assertCount(Rule::where('enabled', '1')->count(), $models);
+        DB::rollback();
     }
 
     public function testFindByIdMethod()
     {
+        Rule::query()->delete();
+        DB::beginTransaction();
         $faker = Factory::create();
 
         foreach (range(0, 20) as $index) {
@@ -106,15 +107,17 @@ class RulesRepositoryTest extends TestCase
             ]);
         }
 
-        $model = $this->repository->findById(1);
+        $model = $this->repository->findById(Rule::first()->id);
         $empty = $this->repository->findById(999);
-
         $this->assertInstanceOf(Rule::class, $model);
         $this->assertNull($empty);
+        DB::rollback();
     }
 
     public function testStoreMethod()
     {
+        Rule::query()->delete();
+        DB::beginTransaction();
         $this->assertCount(0, $this->repository->all());
 
         $faker = Factory::create();
@@ -130,10 +133,13 @@ class RulesRepositoryTest extends TestCase
 
         $this->assertCount(1, $this->repository->all());
         $this->assertNull($response);
+        DB::rollback();
     }
 
     public function testUpdateMethod()
     {
+        Rule::query()->delete();
+        DB::beginTransaction();
         $faker = Factory::create();
 
         $rule = new Rule;
@@ -145,18 +151,21 @@ class RulesRepositoryTest extends TestCase
         ]);
 
         $this->repository->store($rule);
-        $rule         = $this->repository->findById(1);
+        $rule         = $this->repository->findById(Rule::first()->id);
         $rule->reason = 'new reason';
 
         $response = $this->repository->update($rule);
-        $rule     = $this->repository->findById(1);
+        $rule     = $this->repository->findById(Rule::first()->id);
 
         $this->assertEquals('new reason', $rule->getReason());
         $this->assertNull($response);
+        DB::rollback();
     }
 
     public function testDeleteMethod()
     {
+        Rule::query()->delete();
+        DB::beginTransaction();
         $faker = Factory::create();
 
         $rule = new Rule;
@@ -174,6 +183,7 @@ class RulesRepositoryTest extends TestCase
 
         $this->assertCount(0, $this->repository->all());
         $this->assertNull($response);
+        DB::rollback();
     }
 
 }

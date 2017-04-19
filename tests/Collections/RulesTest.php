@@ -20,10 +20,10 @@
 
 namespace Antares\BanManagement\Collections;
 
-use Mockery as m;
-use Antares\Testbench\TestCase;
 use Antares\BanManagement\Contracts\RulesRepositoryContract;
 use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Testbench\TestCase;
+use Mockery as m;
 
 class RuleTest extends TestCase
 {
@@ -40,6 +40,9 @@ class RuleTest extends TestCase
         $this->repository = m::mock(RulesRepositoryContract::class);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function tearDown()
     {
         parent::tearDown();

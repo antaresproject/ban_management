@@ -61,7 +61,7 @@ class DDoSService
         if (request()->ajax()) {
             return $this;
         }
-        if (!isset($_SESSION)) {
+        if (!isset($_SESSION) && php_sapi_name() !== 'cli') {
             session_start();
         }
         $interval = array_get($this->config, 'interval', 5);

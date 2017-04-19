@@ -20,12 +20,15 @@
 
 namespace Antares\BanManagement\Model;
 
-use Antares\Testbench\TestCase;
+use Antares\Testing\ApplicationTestCase;
 use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Support\Traits\Testing\EloquentConnectionTrait;
 use Carbon\Carbon;
 
-class RuleTest extends TestCase
+class RuleTest extends ApplicationTestCase
 {
+
+    use EloquentConnectionTrait;
 
     public function testContract()
     {
@@ -56,7 +59,7 @@ class RuleTest extends TestCase
         $this->assertFalse($rule->isEnabled());
         $this->assertTrue($rule->isTrusted());
         $this->assertEquals('localhost', $rule->getValue());
-        $this->assertEquals($date, $rule->getExpirationDate());
+        $this->assertEquals($date->format('Y-m-d'), $rule->getExpirationDate()->format('Y-m-d'));
     }
 
 }

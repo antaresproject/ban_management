@@ -87,7 +87,6 @@ class EmailTest extends TestCase
 
         foreach ($map as $template => $entry) {
             $rule = new Email($template);
-
             $this->assertTrue($rule->check($entry), 'Template rule: ' . $template . ' to ' . $entry);
         }
     }

@@ -185,8 +185,12 @@ class BanManagementServiceProvider extends ModuleServiceProvider
      */
     protected function bootMenu()
     {
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
         $menuFactory = $this->app->make(MenuFactory::class);
         $handlers    = [BansBreadcrumbMenu::class];
+
         $menuFactory->with('menu.top.ban_management')
                 ->withHandlers($handlers)
                 ->compose('antares/ban_management::admin.list', ['name' => 'ban_management', 'title' => 'antares/ban_management::title.menu.add']);

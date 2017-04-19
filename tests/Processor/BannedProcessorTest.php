@@ -22,31 +22,12 @@ namespace Antares\BanManagement\Processor;
 
 use Mockery as m;
 use Antares\BanManagement\BanManagementServiceProvider;
-use Antares\Testing\TestCase;
+use Antares\Testing\ApplicationTestCase;
 use Antares\Widget\WidgetServiceProvider;
 use Antares\BanManagement\Contracts\BannedListener;
 
-class BannedProcessorTest extends TestCase
+class BannedProcessorTest extends ApplicationTestCase
 {
-
-    /**
-     * @var Mockery
-     */
-    protected $session;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->app->register(WidgetServiceProvider::class);
-        $this->app->register(BanManagementServiceProvider::class);
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
 
     public function testHandleMethod()
     {
@@ -57,9 +38,8 @@ class BannedProcessorTest extends TestCase
                 ->andReturn()
                 ->getMock();
 
-        $processor = new BannedProcessor($this->session);
-
-        $processor->handle($listener, m::type('String'));
+        $processor = new BannedProcessor;
+        $this->assertNull($processor->handle($listener, m::type('String')));
     }
 
 }
