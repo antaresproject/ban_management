@@ -196,37 +196,4 @@ class BanManagementServiceProvider extends ModuleServiceProvider
                 ->compose('antares/ban_management::admin.list', ['name' => 'ban_management', 'title' => 'antares/ban_management::title.menu.add']);
     }
 
-    /**
-     * Returns the collection of the ACL actions.
-     *
-     * @return RoleActionList
-     */
-    public static function acl()
-    {
-        $actions = [
-            new Action('admin.ban_management.rules.index', 'List Rules'),
-            new Action('admin.ban_management.rules.create', 'Add Rule'),
-            new Action('admin.ban_management.rules.store', 'Add Rule'),
-            new Action('admin.ban_management.rules.edit', 'Update Rule'),
-            new Action('admin.ban_management.rules.update', 'Update Rule'),
-            new Action('admin.ban_management.rules.destroy', 'Delete Rule'),
-            new Action('admin.ban_management.bannedemails.index', 'List Banned Emails'),
-            new Action('admin.ban_management.bannedemails.create', 'Add Banned Email'),
-            new Action('admin.ban_management.bannedemails.store', 'Add Banned Email'),
-            new Action('admin.ban_management.bannedemails.edit', 'Update Banned Email'),
-            new Action('admin.ban_management.bannedemails.update', 'Update Banned Email'),
-            new Action('admin.ban_management.bannedemails.destroy', 'Delete Banned Email'),
-        ];
-
-        $adminActions = array_merge($actions, [
-            new Action('admin.ban_management.configuration', 'Configuration'),
-        ]);
-
-        $permissions = new RoleActionList;
-        $permissions->add(Role::admin()->name, $adminActions);
-        $permissions->add(Role::member()->name, $actions);
-
-        return $permissions;
-    }
-
 }
