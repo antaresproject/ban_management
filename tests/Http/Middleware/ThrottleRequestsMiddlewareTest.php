@@ -39,8 +39,6 @@ class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
 
     public function setUp()
     {
-//        $this->addProvider(\Antares\Widget\WidgetServiceProvider::class);
-//        $this->addProvider(\Antares\Widgets\WidgetsServiceProvider::class);
         $this->addProvider(\Antares\BanManagement\BanManagementServiceProvider::class);
         parent::setUp();
 

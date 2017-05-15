@@ -23,7 +23,7 @@ namespace Antares\BanManagement\Processor;
 use Mockery as m;
 use Antares\BanManagement\BanManagementServiceProvider;
 use Antares\Testing\ApplicationTestCase;
-use Antares\Widget\WidgetServiceProvider;
+use Antares\UI\UIServiceProvider;
 use Antares\BanManagement\Contracts\BannedListener;
 
 class BannedProcessorTest extends ApplicationTestCase
