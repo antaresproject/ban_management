@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Rules;
+namespace Antares\Modules\BanManagement\Rules;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;

@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Model;
+namespace Antares\Modules\BanManagement\Model;
 
 use Antares\Testbench\TestCase;
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Carbon\Carbon;
 
 class PlainRuleTest extends TestCase

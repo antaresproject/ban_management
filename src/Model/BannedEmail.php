@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Model;
+namespace Antares\Modules\BanManagement\Model;
 
-use Antares\BanManagement\Contracts\BanReasonContract;
-use Antares\BanManagement\Contracts\ExpirableContract;
-use Antares\BanManagement\Http\Presenters\ModelPresenter;
-use Antares\BanManagement\Traits\ExpirationTrait;
+use Antares\Modules\BanManagement\Contracts\BanReasonContract;
+use Antares\Modules\BanManagement\Contracts\ExpirableContract;
+use Antares\Modules\BanManagement\Http\Presenters\ModelPresenter;
+use Antares\Modules\BanManagement\Traits\ExpirationTrait;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Antares\Logger\Traits\LogRecorder;
 use Antares\Model\User;

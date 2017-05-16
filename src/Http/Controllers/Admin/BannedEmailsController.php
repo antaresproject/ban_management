@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Controllers\Admin;
+namespace Antares\Modules\BanManagement\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\BanManagement\Contracts\BannedEmailListener;
-use Antares\BanManagement\Processor\BannedEmailsProcessor;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Contracts\BannedEmailListener;
+use Antares\Modules\BanManagement\Processor\BannedEmailsProcessor;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 

@@ -18,9 +18,9 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Events;
+namespace Antares\Modules\BanManagement\Events;
 
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Illuminate\Http\Request;
 
 class Banned

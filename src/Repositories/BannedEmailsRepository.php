@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Repositories;
+namespace Antares\Modules\BanManagement\Repositories;
 
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 
 class BannedEmailsRepository implements BannedEmailsRepositoryContract
 {

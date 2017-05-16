@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;
@@ -46,7 +46,7 @@ class CookieBanMiddlewareTest extends TestCase
         parent::setUp();
 
         $this->kernel           = m::mock('\Illuminate\Contracts\Console\Kernel');
-        $this->cookieBanService = m::mock('\Antares\BanManagement\Services\CookieBanService');
+        $this->cookieBanService = m::mock('\Antares\Modules\BanManagement\Services\CookieBanService');
         $this->request          = m::mock('\Illuminate\Http\Request');
 
         $this->app->instance('\Illuminate\Contracts\Console\Kernel', $this->kernel);
@@ -59,7 +59,7 @@ class CookieBanMiddlewareTest extends TestCase
     }
 
     /**
-     * @return \Antares\BanManagement\Http\Middleware\CookieBanMiddleware
+     * @return \Antares\Modules\BanManagement\Http\Middleware\CookieBanMiddleware
      */
     protected function getCookieBanMiddleware()
     {

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\Request;

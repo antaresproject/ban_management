@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Controllers;
+namespace Antares\Modules\BanManagement\Http\Controllers;
 
 use Antares\Foundation\Http\Controllers\BaseController;
-use Antares\BanManagement\Processor\BannedProcessor;
-use Antares\BanManagement\Contracts\BannedListener;
+use Antares\Modules\BanManagement\Processor\BannedProcessor;
+use Antares\Modules\BanManagement\Contracts\BannedListener;
 
 class BannedController extends BaseController implements BannedListener
 {

@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Repositories;
+namespace Antares\Modules\BanManagement\Repositories;
 
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Model\Rule;
 use Carbon\Carbon;
 
 class RulesRepository implements RulesRepositoryContract

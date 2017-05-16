@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Validation;
+namespace Antares\Modules\BanManagement\Validation;
 
-use Antares\BanManagement\Model\PlainRule;
+use Antares\Modules\BanManagement\Model\PlainRule;
 use Illuminate\Http\Request;
 use Antares\Contracts\Auth\Guard;
-use Antares\BanManagement\Services\FirewallService;
-use Antares\BanManagement\Services\BannedEmailService;
-use Antares\BanManagement\Rules\Email;
+use Antares\Modules\BanManagement\Services\FirewallService;
+use Antares\Modules\BanManagement\Services\BannedEmailService;
+use Antares\Modules\BanManagement\Rules\Email;
 
 class CustomRules
 {

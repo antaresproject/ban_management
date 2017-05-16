@@ -18,9 +18,9 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Processor;
+namespace Antares\Modules\BanManagement\Processor;
 
-use Antares\BanManagement\Contracts\BannedListener;
+use Antares\Modules\BanManagement\Contracts\BannedListener;
 
 class BannedProcessor
 {

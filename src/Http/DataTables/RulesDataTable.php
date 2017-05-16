@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\DataTables;
+namespace Antares\Modules\BanManagement\Http\DataTables;
 
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Http\Filter\SearchQuery;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Http\Filter\SearchQuery;
 use Antares\Datatables\Services\DataTable;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Model\Rule;
 use Carbon\Carbon;
 use Closure;
 use Form;

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Filter\Rule;
+namespace Antares\Modules\BanManagement\Http\Filter\Rule;
 
 use Yajra\Datatables\Contracts\DataTableScopeContract;
 use Antares\Datatables\Filter\SelectFilter;

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Breadcrumb;
+namespace Antares\Modules\BanManagement\Http\Breadcrumb;
 
 use Antares\Breadcrumb\Navigation;
 use DaveJamesMiller\Breadcrumbs\Generator;

@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Form;
+namespace Antares\Modules\BanManagement\Http\Form;
 
 use Antares\Contracts\Html\Form\Factory as FormFactory;
 use Antares\Contracts\Html\Form\Fieldset;
 use Antares\Contracts\Html\Form\Grid as FormGrid;
 use Antares\Contracts\Html\Form\Presenter;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Validation\BannedEmailValidation;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Validation\BannedEmailValidation;
 
 class BannedEmailForm
 {

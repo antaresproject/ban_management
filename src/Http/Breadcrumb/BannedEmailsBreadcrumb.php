@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Breadcrumb;
+namespace Antares\Modules\BanManagement\Http\Breadcrumb;
 
 use Antares\Breadcrumb\Navigation;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use DaveJamesMiller\Breadcrumbs\Generator;
 
 class BannedEmailsBreadcrumb extends Navigation

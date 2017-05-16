@@ -18,18 +18,18 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Processor;
+namespace Antares\Modules\BanManagement\Processor;
 
 use Antares\Foundation\Processor\Processor;
-use Antares\BanManagement\Contracts\BannedEmailListener;
-use Antares\BanManagement\Contracts\BannedEmailStoreListener;
-use Antares\BanManagement\Contracts\BannedEmailUpdateListener;
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\BanManagement\Contracts\BannedEmailSyncListener;
-use Antares\BanManagement\Http\Presenters\BannedEmailsPresenter;
-use Antares\BanManagement\Validation\BannedEmailValidation;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Services\BannedEmailService;
+use Antares\Modules\BanManagement\Contracts\BannedEmailListener;
+use Antares\Modules\BanManagement\Contracts\BannedEmailStoreListener;
+use Antares\Modules\BanManagement\Contracts\BannedEmailUpdateListener;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\BannedEmailSyncListener;
+use Antares\Modules\BanManagement\Http\Presenters\BannedEmailsPresenter;
+use Antares\Modules\BanManagement\Validation\BannedEmailValidation;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Services\BannedEmailService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Events\Dispatcher;
 use Antares\Support\Collection;
@@ -104,7 +104,7 @@ class BannedEmailsProcessor extends Processor
     /**
      * Returns the array of all banned emails.
      *
-     * @return Collection|\Antares\BanManagement\Model\BannedEmail[]
+     * @return Collection|\Antares\Modules\BanManagement\Model\BannedEmail[]
      */
     public function getAll()
     {

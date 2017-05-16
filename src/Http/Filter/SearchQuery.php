@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Filter;
+namespace Antares\Modules\BanManagement\Http\Filter;
 
 use Illuminate\Http\Request;
 use Closure;

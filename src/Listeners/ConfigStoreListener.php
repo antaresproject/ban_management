@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Listeners;
+namespace Antares\Modules\BanManagement\Listeners;
 
-use Antares\BanManagement\Processor\RulesProcessor;
-use Antares\BanManagement\Validation\ConfigValidation;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Validation\ConfigValidation;
 use Antares\Foundation\Events\SecurityFormSubmitted;
 use Illuminate\Container\Container;
 use Antares\Model\Component;

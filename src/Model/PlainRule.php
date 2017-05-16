@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Model;
+namespace Antares\Modules\BanManagement\Model;
 
-use Antares\BanManagement\Contracts\RuleContract;
-use Antares\BanManagement\Traits\ExpirationTrait;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Traits\ExpirationTrait;
 use Carbon\Carbon;
 
 class PlainRule implements RuleContract

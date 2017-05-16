@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;
 use Illuminate\Http\Response;
-use Antares\BanManagement\Http\Controllers\BannedController;
+use Antares\Modules\BanManagement\Http\Controllers\BannedController;
 
 class FirewallMiddlewareTest extends TestCase
 {
@@ -63,10 +63,10 @@ class FirewallMiddlewareTest extends TestCase
         parent::setUp();
 
         $this->dispatcher   = m::mock('\Illuminate\Events\Dispatcher');
-        $this->firewall     = m::mock('\Antares\BanManagement\Services\FirewallService');
+        $this->firewall     = m::mock('\Antares\Modules\BanManagement\Services\FirewallService');
         $this->container    = m::mock('\Illuminate\Contracts\Container\Container');
         $this->route        = m::mock('\Illuminate\Routing\Route');
-        $this->routeService = m::mock('\Antares\BanManagement\Services\RouteService');
+        $this->routeService = m::mock('\Antares\Modules\BanManagement\Services\RouteService');
         $this->request      = m::mock('\Illuminate\Http\Request');
     }
 
@@ -77,7 +77,7 @@ class FirewallMiddlewareTest extends TestCase
     }
 
     /**
-     * @return \Antares\BanManagement\Http\Middleware\FirewallMiddleware
+     * @return \Antares\Modules\BanManagement\Http\Middleware\FirewallMiddleware
      */
     protected function getFirewallMiddleware()
     {
@@ -129,7 +129,7 @@ class FirewallMiddlewareTest extends TestCase
 
     public function testHandleWitBanAction()
     {
-        $rule = m::mock(\Antares\BanManagement\Contracts\RuleContract::class)
+        $rule = m::mock(\Antares\Modules\BanManagement\Contracts\RuleContract::class)
                 ->shouldReceive('getReason')
                 ->once()
                 ->andReturn('reason')
@@ -154,7 +154,7 @@ class FirewallMiddlewareTest extends TestCase
 
         $this->dispatcher
                 ->shouldReceive('fire')
-                ->with(m::type('\Antares\BanManagement\Events\Banned'))
+                ->with(m::type('\Antares\Modules\BanManagement\Events\Banned'))
                 ->once()
                 ->andReturnNull()
                 ->getMock();
@@ -183,7 +183,7 @@ class FirewallMiddlewareTest extends TestCase
 
     public function testHandleWitBanActionOfModelRule()
     {
-        $rule = m::mock('\Antares\BanManagement\Model\Rule')
+        $rule = m::mock('\Antares\Modules\BanManagement\Model\Rule')
                 ->shouldReceive('getReason')
                 ->once()
                 ->andReturn('test reason')
@@ -208,7 +208,7 @@ class FirewallMiddlewareTest extends TestCase
 
         $this->dispatcher
                 ->shouldReceive('fire')
-                ->with(m::type('\Antares\BanManagement\Events\Banned'))
+                ->with(m::type('\Antares\Modules\BanManagement\Events\Banned'))
                 ->once()
                 ->andReturnNull()
                 ->getMock();

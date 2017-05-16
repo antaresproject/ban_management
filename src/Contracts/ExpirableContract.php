@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Contracts;
+namespace Antares\Modules\BanManagement\Contracts;
 
 use Carbon\Carbon;
 

@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Console\Commands\BannedEmails;
+namespace Antares\Modules\BanManagement\Console\Commands\BannedEmails;
 
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Console\Command;
-use Antares\BanManagement\Processor\BannedEmailsProcessor;
-use Antares\BanManagement\Contracts\BannedEmailStoreListener;
+use Antares\Modules\BanManagement\Processor\BannedEmailsProcessor;
+use Antares\Modules\BanManagement\Contracts\BannedEmailStoreListener;
 use Illuminate\Support\MessageBag;
 
 class AddCommand extends Command implements BannedEmailStoreListener

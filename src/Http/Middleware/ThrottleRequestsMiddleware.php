@@ -18,13 +18,13 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Carbon\Carbon;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Console\Kernel;
-use Antares\BanManagement\Config;
+use Antares\Modules\BanManagement\Config;
 use Closure;
 
 class ThrottleRequestsMiddleware

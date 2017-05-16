@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Placeholder;
+namespace Antares\Modules\BanManagement\Http\Placeholder;
 
 use Antares\Foundation\Http\Composers\LeftPane;
 

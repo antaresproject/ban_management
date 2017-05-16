@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Handlers;
+namespace Antares\Modules\BanManagement\Http\Handlers;
 
-use Antares\BanManagement\Processor\RulesProcessor;
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Antares\Html\Form\Grid as FormGrid;
-use Antares\BanManagement\Config;
+use Antares\Modules\BanManagement\Config;
 use Antares\Html\Form\FormBuilder;
 use Antares\Html\Form\Fieldset;
 use Illuminate\Http\Request;

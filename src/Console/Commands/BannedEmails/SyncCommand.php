@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Console\Commands\BannedEmails;
+namespace Antares\Modules\BanManagement\Console\Commands\BannedEmails;
 
 use Illuminate\Console\Command;
-use Antares\BanManagement\Processor\BannedEmailsProcessor;
-use Antares\BanManagement\Contracts\BannedEmailSyncListener;
+use Antares\Modules\BanManagement\Processor\BannedEmailsProcessor;
+use Antares\Modules\BanManagement\Contracts\BannedEmailSyncListener;
 
 class SyncCommand extends Command implements BannedEmailSyncListener
 {

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Validation;
+namespace Antares\Modules\BanManagement\Validation;
 
 use Antares\Html\Form\FormBuilder;
 use Antares\Support\Validator;

@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Model;
+namespace Antares\Modules\BanManagement\Model;
 
 use Antares\Testing\ApplicationTestCase;
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Antares\Support\Traits\Testing\EloquentConnectionTrait;
 use Carbon\Carbon;
 

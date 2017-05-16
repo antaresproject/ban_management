@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Console\Commands\Rules;
+namespace Antares\Modules\BanManagement\Console\Commands\Rules;
 
 use Illuminate\Console\Command;
-use Antares\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
 
 class ListCommand extends Command
 {

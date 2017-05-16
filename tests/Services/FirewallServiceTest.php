@@ -18,15 +18,15 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;
-use Antares\BanManagement\Model\PlainRule;
-use Antares\BanManagement\Collections\Rules;
+use Antares\Modules\BanManagement\Model\PlainRule;
+use Antares\Modules\BanManagement\Collections\Rules;
 use M6Web\Component\Firewall\Entry\EntryFactory;
 use M6Web\Component\Firewall\Lists\ListMerger;
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
 
 class FirewallServiceTest extends TestCase
 {

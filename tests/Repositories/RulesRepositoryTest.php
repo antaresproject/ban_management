@@ -18,9 +18,9 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Repositories;
+namespace Antares\Modules\BanManagement\Repositories;
 
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Model\Rule;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Antares\Testing\TestCase;

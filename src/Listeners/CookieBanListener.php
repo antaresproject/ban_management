@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Listeners;
+namespace Antares\Modules\BanManagement\Listeners;
 
-use Antares\BanManagement\Services\CookieBanService;
-use Antares\BanManagement\Events\Banned;
+use Antares\Modules\BanManagement\Services\CookieBanService;
+use Antares\Modules\BanManagement\Events\Banned;
 
 class CookieBanListener
 {

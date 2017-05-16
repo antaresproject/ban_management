@@ -18,13 +18,13 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Presenters;
+namespace Antares\Modules\BanManagement\Http\Presenters;
 
 use Antares\Foundation\Http\Presenters\Presenter;
-use Antares\BanManagement\Http\Breadcrumb\RulesBreadcrumb;
-use Antares\BanManagement\Http\Form\RuleForm;
-use Antares\BanManagement\Http\DataTables\RulesDataTable;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Http\Breadcrumb\RulesBreadcrumb;
+use Antares\Modules\BanManagement\Http\Form\RuleForm;
+use Antares\Modules\BanManagement\Http\DataTables\RulesDataTable;
+use Antares\Modules\BanManagement\Model\Rule;
 
 class RulesPresenter extends Presenter
 {

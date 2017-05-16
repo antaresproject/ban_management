@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Contracts\RuleContract;
-use Antares\BanManagement\Collections\Rules;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Collections\Rules;
 use M6Web\Component\Firewall\Entry\EntryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use M6Web\Component\Firewall\Firewall;

@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Repositories\BannedEmailsRepository;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Repositories\BannedEmailsRepository;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
 use Antares\Testing\TestCase;

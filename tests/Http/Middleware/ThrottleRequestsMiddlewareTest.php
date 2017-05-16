@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Illuminate\Cache\RateLimiter;
 use Mockery as m;
@@ -39,7 +39,7 @@ class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
 
     public function setUp()
     {
-        $this->addProvider(\Antares\BanManagement\BanManagementServiceProvider::class);
+        $this->addProvider(\Antares\Modules\BanManagement\BanManagementServiceProvider::class);
         parent::setUp();
 
 

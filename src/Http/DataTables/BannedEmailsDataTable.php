@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\DataTables;
+namespace Antares\Modules\BanManagement\Http\DataTables;
 
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
 use Antares\Datatables\Services\DataTable;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Carbon\Carbon;
 use Closure;
-use Antares\BanManagement\Http\Filter\SearchQuery;
+use Antares\Modules\BanManagement\Http\Filter\SearchQuery;
 use Form;
 
 class BannedEmailsDataTable extends DataTable

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Rules;
+namespace Antares\Modules\BanManagement\Rules;
 
 use M6Web\Component\Firewall\Entry\AbstractEntry;
 

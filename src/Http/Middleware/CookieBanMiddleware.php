@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Illuminate\Contracts\Console\Kernel;
-use Antares\BanManagement\Services\CookieBanService;
+use Antares\Modules\BanManagement\Services\CookieBanService;
 use Illuminate\Http\Request;
 use Closure;
 

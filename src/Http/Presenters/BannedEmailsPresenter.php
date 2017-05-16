@@ -18,13 +18,13 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Presenters;
+namespace Antares\Modules\BanManagement\Http\Presenters;
 
 use Antares\Foundation\Http\Presenters\Presenter;
-use Antares\BanManagement\Http\Breadcrumb\BannedEmailsBreadcrumb;
-use Antares\BanManagement\Http\Form\BannedEmailForm;
-use Antares\BanManagement\Http\DataTables\BannedEmailsDataTable;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Http\Breadcrumb\BannedEmailsBreadcrumb;
+use Antares\Modules\BanManagement\Http\Form\BannedEmailForm;
+use Antares\Modules\BanManagement\Http\DataTables\BannedEmailsDataTable;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 
 class BannedEmailsPresenter extends Presenter
 {

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement;
+namespace Antares\Modules\BanManagement;
 
 use Illuminate\Container\Container;
 use Antares\Extension\Contracts\Config\SettingsContract;

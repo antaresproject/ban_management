@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Repositories\RulesRepository;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Repositories\RulesRepository;
+use Antares\Modules\BanManagement\Model\Rule;
 
 class DDoSService
 {

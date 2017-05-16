@@ -28,5 +28,5 @@ return [
     \M6Web\Component\Firewall\Entry\IPV6Mask::class,
     \M6Web\Component\Firewall\Entry\IPV6Range::class,
     \M6Web\Component\Firewall\Entry\IPV6Wildcard::class,
-    \Antares\BanManagement\Rules\Hostname::class,
+    \Antares\Modules\BanManagement\Rules\Hostname::class,
 ];

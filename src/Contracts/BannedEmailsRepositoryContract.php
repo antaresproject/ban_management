@@ -18,9 +18,9 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Contracts;
+namespace Antares\Modules\BanManagement\Contracts;
 
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Exception;
 
 interface BannedEmailsRepositoryContract

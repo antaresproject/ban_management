@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Traits;
+namespace Antares\Modules\BanManagement\Traits;
 
 use Carbon\Carbon;
 

@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
-use Antares\BanManagement\Http\Controllers\BannedController;
+use Antares\Modules\BanManagement\Http\Controllers\BannedController;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Container\Container;
-use Antares\BanManagement\Services\BannedEmailService;
-use Antares\BanManagement\Contracts\BanReasonContract;
-use Antares\BanManagement\Services\RouteService;
+use Antares\Modules\BanManagement\Services\BannedEmailService;
+use Antares\Modules\BanManagement\Contracts\BanReasonContract;
+use Antares\Modules\BanManagement\Services\RouteService;
 use Antares\Contracts\Auth\Guard;
 use Closure;
 

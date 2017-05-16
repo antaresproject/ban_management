@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Console\Commands\Rules;
+namespace Antares\Modules\BanManagement\Console\Commands\Rules;
 
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Illuminate\Console\Command;
-use Antares\BanManagement\Processor\RulesProcessor;
-use Antares\BanManagement\Contracts\RuleStoreListener;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Contracts\RuleStoreListener;
 use Illuminate\Support\MessageBag;
 
 class AddCommand extends Command implements RuleStoreListener

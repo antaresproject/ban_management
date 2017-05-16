@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Breadcrumb;
+namespace Antares\Modules\BanManagement\Http\Breadcrumb;
 
 use Antares\Breadcrumb\Navigation;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Model\Rule;
 use DaveJamesMiller\Breadcrumbs\Generator;
 
 class RulesBreadcrumb extends Navigation

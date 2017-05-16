@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Form;
+namespace Antares\Modules\BanManagement\Http\Form;
 
 use Antares\Contracts\Html\Form\Factory as FormFactory;
 use Antares\Contracts\Html\Form\Fieldset;
 use Antares\Contracts\Html\Form\Grid as FormGrid;
 use Antares\Contracts\Html\Form\Presenter;
-use Antares\BanManagement\Model\Rule;
-use Antares\BanManagement\Validation\RuleValidation;
+use Antares\Modules\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Validation\RuleValidation;
 
 class RuleForm
 {
@@ -66,7 +66,7 @@ class RuleForm
      *
      * 
      * @param boolean $canBanSelf
-     * @return \Antares\BanManagement\Http\Form\RuleForm
+     * @return \Antares\Modules\BanManagement\Http\Form\RuleForm
      */
     public function canBanSelf($canBanSelf)
     {

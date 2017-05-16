@@ -18,32 +18,32 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement;
+namespace Antares\Modules\BanManagement;
 
 use Antares\Acl\Action;
 use Antares\Acl\RoleActionList;
-use Antares\BanManagement\Console\Commands\BannedEmails\AddCommand;
-use Antares\BanManagement\Console\Commands\BannedEmails\ListCommand;
-use Antares\BanManagement\Console\Commands\BannedEmails\SyncCommand;
-use Antares\BanManagement\Console\Commands\Rules\AddCommand as AddCommand2;
-use Antares\BanManagement\Console\Commands\Rules\ListCommand as ListCommand2;
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Events\Banned;
-use Antares\BanManagement\Http\Handlers\BansBreadcrumbMenu;
-use Antares\BanManagement\Http\Handlers\SimpleConfig;
-use Antares\BanManagement\Http\Middleware\BannedEmailMiddleware;
-use Antares\BanManagement\Http\Middleware\CookieBanMiddleware;
-use Antares\BanManagement\Http\Middleware\FirewallMiddleware;
-use Antares\BanManagement\Http\Middleware\ThrottleRequestsMiddleware;
-use Antares\BanManagement\Http\Placeholder\BansPlaceholder;
-use Antares\BanManagement\Listeners\ConfigStoreListener;
-use Antares\BanManagement\Listeners\CookieBanListener;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Model\Rule;
-use Antares\BanManagement\Repositories\BannedEmailsRepository;
-use Antares\BanManagement\Repositories\RulesRepository;
-use Antares\BanManagement\Services\RouteService;
+use Antares\Modules\BanManagement\Console\Commands\BannedEmails\AddCommand;
+use Antares\Modules\BanManagement\Console\Commands\BannedEmails\ListCommand;
+use Antares\Modules\BanManagement\Console\Commands\BannedEmails\SyncCommand;
+use Antares\Modules\BanManagement\Console\Commands\Rules\AddCommand as AddCommand2;
+use Antares\Modules\BanManagement\Console\Commands\Rules\ListCommand as ListCommand2;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Events\Banned;
+use Antares\Modules\BanManagement\Http\Handlers\BansBreadcrumbMenu;
+use Antares\Modules\BanManagement\Http\Handlers\SimpleConfig;
+use Antares\Modules\BanManagement\Http\Middleware\BannedEmailMiddleware;
+use Antares\Modules\BanManagement\Http\Middleware\CookieBanMiddleware;
+use Antares\Modules\BanManagement\Http\Middleware\FirewallMiddleware;
+use Antares\Modules\BanManagement\Http\Middleware\ThrottleRequestsMiddleware;
+use Antares\Modules\BanManagement\Http\Placeholder\BansPlaceholder;
+use Antares\Modules\BanManagement\Listeners\ConfigStoreListener;
+use Antares\Modules\BanManagement\Listeners\CookieBanListener;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Repositories\BannedEmailsRepository;
+use Antares\Modules\BanManagement\Repositories\RulesRepository;
+use Antares\Modules\BanManagement\Services\RouteService;
 use Antares\Foundation\Support\Factories\MenuFactory;
 use Antares\Foundation\Support\Providers\ModuleServiceProvider;
 use Antares\Model\Role;
@@ -52,7 +52,7 @@ use Illuminate\Routing\Router;
 use M6Web\Component\Firewall\Entry\EntryFactory;
 use Validator;
 use Antares\Foundation\Events\SecurityFormSubmitted;
-use Antares\BanManagement\Services\DDoSService;
+use Antares\Modules\BanManagement\Services\DDoSService;
 
 class BanManagementServiceProvider extends ModuleServiceProvider
 {
@@ -62,7 +62,7 @@ class BanManagementServiceProvider extends ModuleServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'Antares\BanManagement\Http\Controllers\Admin';
+    protected $namespace = 'Antares\Modules\BanManagement\Http\Controllers\Admin';
 
     /**
      * The application or extension group namespace.
@@ -163,8 +163,8 @@ class BanManagementServiceProvider extends ModuleServiceProvider
      */
     protected function extendValidator()
     {
-        Validator::extend('notSubmitterIpHostname', '\Antares\BanManagement\Validation\CustomRules@notSubmitterIpHostname');
-        Validator::extend('notSubmitterEmail', '\Antares\BanManagement\Validation\CustomRules@notSubmitterEmail');
+        Validator::extend('notSubmitterIpHostname', '\Antares\Modules\BanManagement\Validation\CustomRules@notSubmitterIpHostname');
+        Validator::extend('notSubmitterEmail', '\Antares\Modules\BanManagement\Validation\CustomRules@notSubmitterEmail');
     }
 
     protected function registerModelsEvents()

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;
@@ -57,7 +57,7 @@ class CookieBanServiceTest extends TestCase
     }
 
     /**
-     * @return \Antares\BanManagement\Services\CookieBanService
+     * @return \Antares\Modules\BanManagement\Services\CookieBanService
      */
     protected function getCookieBanService()
     {

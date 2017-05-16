@@ -18,9 +18,9 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Presenters;
+namespace Antares\Modules\BanManagement\Http\Presenters;
 
-use Antares\BanManagement\Contracts\ExpirableContract;
+use Antares\Modules\BanManagement\Contracts\ExpirableContract;
 use Carbon\Carbon;
 
 class ModelPresenter

@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Handlers;
+namespace Antares\Modules\BanManagement\Http\Handlers;
 
 use Antares\Contracts\Auth\Guard;
 use Antares\Foundation\Support\MenuHandler;

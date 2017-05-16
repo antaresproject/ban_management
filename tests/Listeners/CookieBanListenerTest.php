@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Listeners;
+namespace Antares\Modules\BanManagement\Listeners;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;
@@ -35,7 +35,7 @@ class CookieBanListenerTest extends TestCase
     {
         parent::setUp();
 
-        $this->cookieBanService = m::mock('\Antares\BanManagement\Services\CookieBanService');
+        $this->cookieBanService = m::mock('\Antares\Modules\BanManagement\Services\CookieBanService');
     }
 
     public function tearDown()
@@ -52,7 +52,7 @@ class CookieBanListenerTest extends TestCase
                 ->andReturnNull()
                 ->getMock();
 
-        $bannedEvent = m::mock('Antares\BanManagement\Events\Banned');
+        $bannedEvent = m::mock('Antares\Modules\BanManagement\Events\Banned');
 
         $listener = new CookieBanListener($this->cookieBanService);
         $listener->handle($bannedEvent);

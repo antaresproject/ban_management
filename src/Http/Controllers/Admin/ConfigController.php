@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Controllers\Admin;
+namespace Antares\Modules\BanManagement\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\BanManagement\Contracts\RuleListener;
-use Antares\BanManagement\Processor\RulesProcessor;
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Contracts\RuleListener;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 

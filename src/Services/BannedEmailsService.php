@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Rules\Email;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Rules\Email;
 use Illuminate\Filesystem\Filesystem;
 use Carbon\Carbon;
 use Exception;
