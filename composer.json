@@ -1,5 +1,5 @@
 {
-    "name": "antaresproject/module-ban-management",
+    "name": "antaresproject/module-ban_management",
     "description": "Antares Ban Management Component",
     "type": "antaresproject-module",
     "homepage": "https://github.com/antaresproject/ban_management",

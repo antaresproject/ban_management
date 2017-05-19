@@ -71,6 +71,7 @@ class BannedEmailsPresenter extends Presenter
     public function table()
     {
         publish('ban_management', 'assets.scripts');
+
         return $this->datatable->render('antares/ban_management::admin.list');
     }
 

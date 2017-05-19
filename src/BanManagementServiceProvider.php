@@ -20,8 +20,6 @@
 
 namespace Antares\Modules\BanManagement;
 
-use Antares\Acl\Action;
-use Antares\Acl\RoleActionList;
 use Antares\Modules\BanManagement\Console\Commands\BannedEmails\AddCommand;
 use Antares\Modules\BanManagement\Console\Commands\BannedEmails\ListCommand;
 use Antares\Modules\BanManagement\Console\Commands\BannedEmails\SyncCommand;
@@ -46,7 +44,6 @@ use Antares\Modules\BanManagement\Repositories\RulesRepository;
 use Antares\Modules\BanManagement\Services\RouteService;
 use Antares\Foundation\Support\Factories\MenuFactory;
 use Antares\Foundation\Support\Providers\ModuleServiceProvider;
-use Antares\Model\Role;
 use Carbon\Carbon;
 use Illuminate\Routing\Router;
 use M6Web\Component\Firewall\Entry\EntryFactory;
@@ -86,6 +83,7 @@ class BanManagementServiceProvider extends ModuleServiceProvider
         SecurityFormSubmitted::class  => [
             ConfigStoreListener::class,
         ],
+        'antares.started: admin'      => \Antares\Modules\BanManagement\Http\Handlers\Menu::class
     ];
 
     /**

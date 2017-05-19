@@ -19,11 +19,6 @@
  */
 use Antares\Routing\Router;
 
-//use Illuminate\Routing\Router;
-
-/* @var $router Router */
-
-
 $router->group(['prefix' => 'ban_management'], function (Router $router) {
 
     $router->match(['GET', 'POST', 'PUT'], 'rules/datatable', 'RulesController@datatable');

@@ -20,8 +20,7 @@ $actions = [
 ];
 
 $adminActions = array_merge($actions, [
-    new Action('ban_management.configuration', 'Configuration'),
-]);
+    new Action('ban_management.configuration', 'Configuration')]);
 
 $permissions = new RoleActionList;
 $permissions->add(Role::admin()->name, $adminActions);
