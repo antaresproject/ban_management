@@ -47,7 +47,7 @@ class Config
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->options   = $this->container->make('antares.extension')->getSettings('antaresproject/module-ban-management');
+        $this->options   = $this->container->make('antares.extension')->getSettings('antaresproject/module-ban_management');
     }
 
     /**
