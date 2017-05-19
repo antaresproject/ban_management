@@ -101,7 +101,7 @@ class ConfigStoreListener
      */
     protected function storeExtensionOptions(array $options)
     {
-        $component          = Component::query()->where('name', 'ban_management')->first();
+        $component          = Component::findOneByName('antaresproject/module-ban-management');
         $component->options = array_merge($component->options, $options);
         $component->save();
     }
