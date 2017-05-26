@@ -1,12 +1,12 @@
 {
     "name": "antaresproject/module-ban_management",
-    "description": "Antares Ban Management Component",
+    "description": "Antares Ban Management Module. Improve application security, using advanced ip and emails blocking with wildcards and whitelists.",
     "type": "antaresproject-module",
     "homepage": "https://github.com/antaresproject/ban_management",
     "version": "0.9.2.1",
     "authors": [
         {
-            "name": "Marcin Kozak",
+            "name": "Antares Team",
             "email": "contact@antaresproject.io"
         }
     ],
