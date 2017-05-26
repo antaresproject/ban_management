@@ -29,7 +29,6 @@ use Antares\Modules\BanManagement\Contracts\BannedEmailSyncListener;
 use Antares\Modules\BanManagement\Http\Presenters\BannedEmailsPresenter;
 use Antares\Modules\BanManagement\Validation\BannedEmailValidation;
 use Antares\Modules\BanManagement\Model\BannedEmail;
-use Antares\Modules\BanManagement\Services\BannedEmailService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Events\Dispatcher;
 use Antares\Support\Collection;
@@ -80,15 +79,14 @@ class BannedEmailsProcessor extends Processor
      * @param BannedEmailsPresenter $presenter
      * @param BannedEmailValidation $validation
      * @param Dispatcher $dispatcher
-     * @param BannedEmailService $bannedEmailService
      */
-    public function __construct(BannedEmailsRepositoryContract $repository, BannedEmailsPresenter $presenter, BannedEmailValidation $validation, Dispatcher $dispatcher, BannedEmailService $bannedEmailService)
+    public function __construct(BannedEmailsRepositoryContract $repository, BannedEmailsPresenter $presenter, BannedEmailValidation $validation, Dispatcher $dispatcher)
     {
         $this->repository         = $repository;
         $this->presenter          = $presenter;
         $this->validation         = $validation;
         $this->dispatcher         = $dispatcher;
-        $this->bannedEmailService = $bannedEmailService;
+        $this->bannedEmailService = app(\Antares\Modules\BanManagement\Services\BannedEmailService::class);
     }
 
     /**
