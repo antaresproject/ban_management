@@ -1,4 +1,4 @@
-# Antares Ban Management Component
+# Antares Ban Management Module
 
 [![Laravel 5.4](https://img.shields.io/badge/Laravel-5.4-orange.svg)](http://laravel.com)
 [![Coverage Status](https://coveralls.io/repos/github/antaresproject/project/badge.svg?branch=master)](https://coveralls.io/github/antaresproject/project?branch=master)
@@ -9,16 +9,20 @@
 [![GitHub stars](https://img.shields.io/github/stars/antaresproject/project.svg)](https://github.com/antaresproject/project/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/antaresproject/project/master/LICENSE)
 
+Ban Management Module improves application security, using advanced ip and emails blocking with wildcards and whitelists.
+
+![ban_management](docs/img/ban_management.png)
+
 ## Documentation
 
-Antares Ban Management Component documentation is not finished yet.
+Antares Ban Management Module documentation is not finished yet.
 
 Full Antares documentation can be found at [antaresproject.io/docs](http://antaresproject.io/docs).
 
 
 ## Changelog
 
-Antares Ban Management Component changelog can be found in release notes [antaresproject.io/docs/site/getting_started/changelog#ban_management](http://antaresproject.io/docs/site/getting_started/changelog/index.html#ban_management).
+Antares Ban Management Module changelog can be found in release notes [antaresproject.io/docs/site/getting_started/changelog#ban_management](http://antaresproject.io/docs/site/getting_started/changelog/index.html#ban_management).
 
 You can find full Antares changelog in Antares Documentation [antaresproject.io/docs/site/getting_started/changelog](http://antaresproject.io/docs/site/getting_started/changelog/index.html).
 
