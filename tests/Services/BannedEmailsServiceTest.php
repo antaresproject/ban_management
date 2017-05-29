@@ -21,6 +21,7 @@
 namespace Antares\Modules\BanManagement\Services;
 
 use Antares\Modules\BanManagement\Repositories\BannedEmailsRepository;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
 use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +65,7 @@ class BannedEmailsServiceTest extends TestCase
      */
     protected function getBannedEmailsService()
     {
-        return new BannedEmailService($this->repository, $this->filesystem);
+        return new BannedEmailsService($this->repository, $this->filesystem);
     }
 
     public function testSaveToFile()

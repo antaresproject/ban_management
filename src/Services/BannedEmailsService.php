@@ -27,7 +27,7 @@ use Illuminate\Filesystem\Filesystem;
 use Carbon\Carbon;
 use Exception;
 
-class BannedEmailService
+class BannedEmailsService
 {
 
     /**
@@ -52,7 +52,7 @@ class BannedEmailService
     protected $storagePath;
 
     /**
-     * BannedEmailService constructor.
+     * BannedEmailsService constructor.
      * @param BannedEmailsRepositoryContract $bannedEmailsRepository
      * @param Filesystem $filesystem
      */

@@ -24,7 +24,7 @@ use Antares\Modules\BanManagement\Model\PlainRule;
 use Illuminate\Http\Request;
 use Antares\Contracts\Auth\Guard;
 use Antares\Modules\BanManagement\Services\FirewallService;
-use Antares\Modules\BanManagement\Services\BannedEmailService;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
 use Antares\Modules\BanManagement\Rules\Email;
 
 class CustomRules
@@ -63,9 +63,9 @@ class CustomRules
      * @param Request $request
      * @param Guard $guard
      * @param FirewallService $firewallService
-     * @param BannedEmailService $bannedEmailService
+     * @param BannedEmailsService $bannedEmailService
      */
-    public function __construct(Request $request, Guard $guard, FirewallService $firewallService, BannedEmailService $bannedEmailService)
+    public function __construct(Request $request, Guard $guard, FirewallService $firewallService, BannedEmailsService $bannedEmailService)
     {
         $this->request            = $request;
         $this->guard              = $guard;

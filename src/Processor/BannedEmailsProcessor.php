@@ -20,15 +20,16 @@
 
 namespace Antares\Modules\BanManagement\Processor;
 
-use Antares\Foundation\Processor\Processor;
-use Antares\Modules\BanManagement\Contracts\BannedEmailListener;
-use Antares\Modules\BanManagement\Contracts\BannedEmailStoreListener;
-use Antares\Modules\BanManagement\Contracts\BannedEmailUpdateListener;
 use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\Modules\BanManagement\Contracts\BannedEmailSyncListener;
 use Antares\Modules\BanManagement\Http\Presenters\BannedEmailsPresenter;
+use Antares\Modules\BanManagement\Contracts\BannedEmailUpdateListener;
+use Antares\Modules\BanManagement\Contracts\BannedEmailStoreListener;
+use Antares\Modules\BanManagement\Contracts\BannedEmailSyncListener;
 use Antares\Modules\BanManagement\Validation\BannedEmailValidation;
+use Antares\Modules\BanManagement\Contracts\BannedEmailListener;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
 use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Foundation\Processor\Processor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Events\Dispatcher;
 use Antares\Support\Collection;
@@ -67,11 +68,11 @@ class BannedEmailsProcessor extends Processor
     protected $dispatcher;
 
     /**
-     * Banned email service instance.
+     * BannedEmailsService instance.
      *
-     * @var BannedEmailService
+     * @var BannedEmailsService
      */
-    protected $bannedEmailService;
+    protected $bannedEmailsService;
 
     /**
      * BannedEmailsProcessor constructor.
@@ -80,13 +81,13 @@ class BannedEmailsProcessor extends Processor
      * @param BannedEmailValidation $validation
      * @param Dispatcher $dispatcher
      */
-    public function __construct(BannedEmailsRepositoryContract $repository, BannedEmailsPresenter $presenter, BannedEmailValidation $validation, Dispatcher $dispatcher)
+    public function __construct(BannedEmailsRepositoryContract $repository, BannedEmailsPresenter $presenter, BannedEmailValidation $validation, Dispatcher $dispatcher, BannedEmailsService $bannedEmailsService)
     {
-        $this->repository         = $repository;
-        $this->presenter          = $presenter;
-        $this->validation         = $validation;
-        $this->dispatcher         = $dispatcher;
-        $this->bannedEmailService = app(\Antares\Modules\BanManagement\Services\BannedEmailService::class);
+        $this->repository          = $repository;
+        $this->presenter           = $presenter;
+        $this->validation          = $validation;
+        $this->dispatcher          = $dispatcher;
+        $this->bannedEmailsService = $bannedEmailsService;
     }
 
     /**
@@ -169,7 +170,7 @@ class BannedEmailsProcessor extends Processor
         }
         try {
             $this->repository->store($bannedEmail);
-            $this->bannedEmailService->saveToFile();
+            $this->bannedEmailsService->saveToFile();
             return $listener->storeBannedEmailSuccess($bannedEmail);
         } catch (Exception $e) {
             Log::critical($e->getMessage());
@@ -202,7 +203,7 @@ class BannedEmailsProcessor extends Processor
         }
         try {
             $this->repository->update($bannedEmail);
-            $this->bannedEmailService->saveToFile();
+            $this->bannedEmailsService->saveToFile();
             return $listener->updateBannedEmailSuccess($bannedEmail);
         } catch (Exception $e) {
             Log::critical($e->getMessage());
@@ -228,7 +229,7 @@ class BannedEmailsProcessor extends Processor
         try {
             $this->fireEvent('deleting', [$bannedEmail]);
             $this->repository->delete($bannedEmail);
-            $this->bannedEmailService->saveToFile();
+            $this->bannedEmailsService->saveToFile();
             $this->fireEvent('deleted', [$bannedEmail]);
         } catch (Exception $e) {
             Log::critical($e->getMessage());
@@ -247,7 +248,7 @@ class BannedEmailsProcessor extends Processor
     public function sync(BannedEmailSyncListener $listener)
     {
         try {
-            $this->bannedEmailService->saveToFile();
+            $this->bannedEmailsService->saveToFile();
 
             return $listener->syncBannedEmailSuccess(trans('antares/ban_management::response.bannedemails.sync.success'));
         } catch (Exception $e) {

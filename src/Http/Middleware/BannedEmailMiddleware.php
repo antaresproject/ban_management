@@ -23,7 +23,7 @@ namespace Antares\Modules\BanManagement\Http\Middleware;
 use Antares\Modules\BanManagement\Http\Controllers\BannedController;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Container\Container;
-use Antares\Modules\BanManagement\Services\BannedEmailService;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
 use Antares\Modules\BanManagement\Contracts\BanReasonContract;
 use Antares\Modules\BanManagement\Services\RouteService;
 use Antares\Contracts\Auth\Guard;
@@ -42,7 +42,7 @@ class BannedEmailMiddleware
     /**
      * Service for banned emails.
      *
-     * @var BannedEmailService
+     * @var BannedEmailsService
      */
     protected $bannedEmailService;
 
@@ -67,7 +67,7 @@ class BannedEmailMiddleware
      * @param RouteService $routeService
      * @param Guard $guard
      */
-    public function __construct(Container $container, BannedEmailService $bannedEmailService, RouteService $routeService, Guard $guard)
+    public function __construct(Container $container, BannedEmailsService $bannedEmailService, RouteService $routeService, Guard $guard)
     {
         $this->container          = $container;
         $this->bannedEmailService = $bannedEmailService;
