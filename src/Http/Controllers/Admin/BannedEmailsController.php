@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,16 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Controllers\Admin;
+namespace Antares\Modules\BanManagement\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\BanManagement\Contracts\BannedEmailListener;
-use Antares\BanManagement\Processor\BannedEmailsProcessor;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Contracts\BannedEmailListener;
+use Antares\Modules\BanManagement\Processor\BannedEmailsProcessor;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
@@ -205,7 +205,7 @@ class BannedEmailsController extends AdminController implements BannedEmailListe
      */
     public function updateBannedEmailFailedValidation($errors, $id)
     {
-        $url = handles('ban_management.bannedemails.edit', compact('id'));
+        $url = handles('antares::ban_management/bannedemails/edit/' . $id);
         return $this->redirectWithErrors($url, $errors);
     }
 

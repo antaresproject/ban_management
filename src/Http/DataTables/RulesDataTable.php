@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,16 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\DataTables;
+namespace Antares\Modules\BanManagement\Http\DataTables;
 
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Http\Filter\SearchQuery;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Http\Filter\SearchQuery;
 use Antares\Datatables\Services\DataTable;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Model\Rule;
 use Carbon\Carbon;
 use Closure;
 use Form;
@@ -58,7 +58,7 @@ class RulesDataTable extends DataTable
 
         if (request()->ajax()) {
             $columns = request()->get('columns', []);
-            $all     = array_where($columns, function($index, $item) {
+            $all     = array_where($columns, function($item, $index) {
                 return array_get($item, 'data') === 'status' AND array_get($item, 'search.value') === 'all';
             });
 
@@ -86,7 +86,7 @@ class RulesDataTable extends DataTable
             return false;
         } else {
             $columns = request()->get('columns', []);
-            $found   = array_where($columns, function($index, $item) {
+            $found   = array_where($columns, function($item, $index) {
                 return strlen(array_get($item, 'search.value')) > 0;
             });
             if (empty($found)) {
@@ -185,28 +185,26 @@ class RulesDataTable extends DataTable
                         ->addColumn(['data' => 'expired_at', 'name' => 'expired_at', 'title' => trans('antares/ban_management::datagrid.header.expired_at')])
                         ->addAction(['name' => 'edit', 'title' => '', 'class' => 'mass-actions dt-actions'])
                         ->setDeferedData()
-                        ->addGroupSelect($this->statusesSelect());
+                        ->addGroupSelect($this->statuses(), 3, 'active', [
+                            'data-prefix'            => '',
+                            'data-selectAR--mdl-big' => "true",
+                            'data-column'            => 3,
+                            'class'                  => 'ban_management-select-status mr24 select2--prefix',
+        ]);
     }
 
     /**
      * Creates select for statuses
      *
-     * @return string
+     * @return array
      */
-    protected function statusesSelect()
+    protected function statuses()
     {
-        $selected = request()->ajax() ? null : 'active';
-
-        return Form::select('status', [
-                    'all'     => trans('antares/ban_management::statuses.all'),
-                    'active'  => trans('antares/ban_management::statuses.active'),
-                    'expired' => trans('antares/ban_management::statuses.expired'),
-                        ], $selected, [
-                    'data-prefix'            => '',
-                    'data-selectAR--mdl-big' => "true",
-                    'data-column'            => 3,
-                    'class'                  => 'ban_management-select-status mr24 select2--prefix',
-        ]);
+        return [
+            'all'     => trans('antares/ban_management::statuses.all'),
+            'active'  => trans('antares/ban_management::statuses.active'),
+            'expired' => trans('antares/ban_management::statuses.expired'),
+        ];
     }
 
     /**
@@ -223,11 +221,11 @@ class RulesDataTable extends DataTable
             $html = app('html');
 
             if ($canUpdate) {
-                $url    = handles('ban_management.rules.edit', ['id' => $row->id]);
+                $url    = handles('antares::ban_management/rules/' . $row->id . '/edit');
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.edit'), ['data-icon' => 'edit']));
             }
             if ($canDelete) {
-                $url    = handles('ban_management.rules.destroy', ['id' => $row->id]);
+                $url    = handles('antares::ban_management/rules/' . $row->id . '/delete');
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.delete'), [
                             'data-icon'        => 'delete',
                             'class'            => 'triggerable confirm',

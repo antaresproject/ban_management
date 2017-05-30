@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,17 +14,17 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Illuminate\Cache\RateLimiter;
 use Mockery as m;
-use Antares\Testing\TestCase;
+use Antares\Testing\ApplicationTestCase;
 
-class ThrottleRequestsMiddlewareTest extends TestCase
+class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
 {
 
     /**
@@ -39,25 +39,20 @@ class ThrottleRequestsMiddlewareTest extends TestCase
 
     public function setUp()
     {
+        $this->addProvider(\Antares\Modules\BanManagement\BanManagementServiceProvider::class);
         parent::setUp();
+
+
 
         $this->kernel      = m::mock('\Illuminate\Contracts\Console\Kernel');
         $this->rateLimiter = $this->app->make(RateLimiter::class);
-
         $this->app->instance('\Illuminate\Contracts\Console\Kernel', $this->kernel);
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
     }
 
     protected function hit($times)
     {
         for ($i = 0; $i < $times; ++$i) {
             $this->call('GET', 'throttle-test-route');
-            $this->assertResponseOk();
         }
     }
 
@@ -66,8 +61,10 @@ class ThrottleRequestsMiddlewareTest extends TestCase
         $this->app->router->get('throttle-test-route', ['middleware' => [ThrottleRequestsMiddleware::class . ':10'], function () {
                 return 'next request';
             }]);
-
+        $this->hit(1);
+        $this->assertResponseOk();
         $this->hit(10);
+        $this->assertResponseStatus(500);
     }
 
     public function testBannedRequest()
@@ -82,8 +79,10 @@ class ThrottleRequestsMiddlewareTest extends TestCase
         $this->app->router->get('throttle-test-route', ['middleware' => [ThrottleRequestsMiddleware::class . ':10'], function () {
                 return 'next request';
             }]);
-
+        $this->hit(1);
+        $this->assertResponseOk();
         $this->hit(11);
+        $this->assertResponseStatus(500);
     }
 
 }

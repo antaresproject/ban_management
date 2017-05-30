@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,16 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Controllers\Admin;
+namespace Antares\Modules\BanManagement\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\BanManagement\Contracts\RuleListener;
-use Antares\BanManagement\Processor\RulesProcessor;
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Contracts\RuleListener;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
@@ -203,7 +203,7 @@ class ConfigController extends AdminController implements RuleListener
      */
     public function updateRuleFailedValidation($errors, $id)
     {
-        $url = handles('ban_management.rules.edit', compact('id'));
+        $url = handles('antares::ban_management/rules/edit/' . $id);
         return $this->redirectWithErrors($url, $errors);
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,20 +14,20 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Rules\Email;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Rules\Email;
 use Illuminate\Filesystem\Filesystem;
 use Carbon\Carbon;
 use Exception;
 
-class BannedEmailService
+class BannedEmailsService
 {
 
     /**
@@ -52,7 +52,7 @@ class BannedEmailService
     protected $storagePath;
 
     /**
-     * BannedEmailService constructor.
+     * BannedEmailsService constructor.
      * @param BannedEmailsRepositoryContract $bannedEmailsRepository
      * @param Filesystem $filesystem
      */

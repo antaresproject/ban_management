@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,17 +14,17 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Presenters;
+namespace Antares\Modules\BanManagement\Http\Presenters;
 
 use Antares\Foundation\Http\Presenters\Presenter;
-use Antares\BanManagement\Http\Breadcrumb\BannedEmailsBreadcrumb;
-use Antares\BanManagement\Http\Form\BannedEmailForm;
-use Antares\BanManagement\Http\DataTables\BannedEmailsDataTable;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Http\Breadcrumb\BannedEmailsBreadcrumb;
+use Antares\Modules\BanManagement\Http\Form\BannedEmailForm;
+use Antares\Modules\BanManagement\Http\DataTables\BannedEmailsDataTable;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 
 class BannedEmailsPresenter extends Presenter
 {
@@ -71,6 +71,7 @@ class BannedEmailsPresenter extends Presenter
     public function table()
     {
         publish('ban_management', 'assets.scripts');
+
         return $this->datatable->render('antares/ban_management::admin.list');
     }
 

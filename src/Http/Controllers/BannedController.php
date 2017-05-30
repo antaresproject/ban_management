@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,15 +14,15 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Controllers;
+namespace Antares\Modules\BanManagement\Http\Controllers;
 
 use Antares\Foundation\Http\Controllers\BaseController;
-use Antares\BanManagement\Processor\BannedProcessor;
-use Antares\BanManagement\Contracts\BannedListener;
+use Antares\Modules\BanManagement\Processor\BannedProcessor;
+use Antares\Modules\BanManagement\Contracts\BannedListener;
 
 class BannedController extends BaseController implements BannedListener
 {

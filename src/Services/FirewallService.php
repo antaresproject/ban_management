@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,14 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Contracts\RuleContract;
-use Antares\BanManagement\Collections\Rules;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
+use Antares\Modules\BanManagement\Collections\Rules;
 use M6Web\Component\Firewall\Entry\EntryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use M6Web\Component\Firewall\Firewall;

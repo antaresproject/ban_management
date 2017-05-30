@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,21 +14,17 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
-use Illuminate\Routing\Router;
-
-/* @var $router Router */
+use Antares\Routing\Router;
 
 $router->group(['prefix' => 'ban_management'], function (Router $router) {
+
     $router->match(['GET', 'POST', 'PUT'], 'rules/datatable', 'RulesController@datatable');
     $router->resource('rules', 'RulesController');
-
     $router->match(['GET', 'POST', 'PUT'], 'bannedemails/datatable', 'BannedEmailsController@datatable');
     $router->resource('bannedemails', 'BannedEmailsController');
-
-
-    $router->get('config', 'ConfigController@edit')->name('admin.ban_management.config.edit');
-    $router->put('config', 'ConfigController@update')->name('admin.ban_management.config.update');
+    $router->get('config', 'ConfigController@edit')->name('ban_management.config.edit');
+    $router->put('config', 'ConfigController@update')->name('ban_management.config.update');
 });

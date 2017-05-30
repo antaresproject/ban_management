@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\DataTables;
+namespace Antares\Modules\BanManagement\Http\DataTables;
 
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
 use Antares\Datatables\Services\DataTable;
-use Antares\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Carbon\Carbon;
 use Closure;
-use Antares\BanManagement\Http\Filter\SearchQuery;
+use Antares\Modules\BanManagement\Http\Filter\SearchQuery;
 use Form;
 
 class BannedEmailsDataTable extends DataTable
@@ -55,7 +55,7 @@ class BannedEmailsDataTable extends DataTable
         ]);
         if (request()->ajax()) {
             $columns = request()->get('columns', []);
-            $all     = array_where($columns, function($index, $item) {
+            $all     = array_where($columns, function($item, $index) {
                 return array_get($item, 'data') === 'status' AND array_get($item, 'search.value') === 'all';
             });
 
@@ -64,9 +64,9 @@ class BannedEmailsDataTable extends DataTable
             }
         }
 
-        if (($where = $this->getDefaultWhere()) !== false) {
-            $query->where($where);
-        }
+//        if (($where = $this->getDefaultWhere()) !== false) {
+//            $query->where($where);
+//        }
 
         return $query;
     }
@@ -82,7 +82,7 @@ class BannedEmailsDataTable extends DataTable
             return ['tbl_ban_management_banned_emails.status' => 1];
         } else {
             $columns = request()->get('columns', []);
-            $found   = array_where($columns, function($index, $item) {
+            $found   = array_where($columns, function($item, $index) {
                 return strlen(array_get($item, 'search.value')) > 0;
             });
             if (empty($found)) {
@@ -177,28 +177,26 @@ class BannedEmailsDataTable extends DataTable
                         ->addColumn(['data' => 'expired_at', 'name' => 'expired_at', 'title' => trans('antares/ban_management::datagrid.header.expired_at')])
                         ->addAction(['name' => 'edit', 'title' => '', 'class' => 'mass-actions dt-actions'])
                         ->setDeferedData()
-                        ->addGroupSelect($this->statusesSelect());
+                        ->addGroupSelect($this->statuses(), 3, 'active', [
+                            'data-prefix'            => '',
+                            'data-selectAR--mdl-big' => "true",
+                            'data-column'            => 3,
+                            'class'                  => 'ban_management-select-status mr24 select2--prefix',
+        ]);
     }
 
     /**
      * Creates select for statuses
      *
-     * @return string
+     * @return array
      */
-    protected function statusesSelect()
+    protected function statuses()
     {
-        $selected = request()->ajax() ? null : 1;
-
-        return Form::select('status', [
-                    'all'     => trans('antares/ban_management::statuses.all'),
-                    'active'  => trans('antares/ban_management::statuses.active'),
-                    'expired' => trans('antares/ban_management::statuses.expired'),
-                        ], $selected, [
-                    'data-prefix'            => '',
-                    'data-selectAR--mdl-big' => "true",
-                    'data-column'            => 3,
-                    'class'                  => 'ban_management-select-status mr24 select2--prefix',
-        ]);
+        return [
+            'all'     => trans('antares/ban_management::statuses.all'),
+            'active'  => trans('antares/ban_management::statuses.active'),
+            'expired' => trans('antares/ban_management::statuses.expired'),
+        ];
     }
 
     /**
@@ -215,11 +213,11 @@ class BannedEmailsDataTable extends DataTable
             $html = app('html');
 
             if ($canUpdate) {
-                $url    = handles('ban_management.bannedemails.edit', ['id' => $row->id]);
+                $url    = handles('antares::ban_management/bannedemails/edit/' . $row->id);
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.edit'), ['data-icon' => 'edit']));
             }
             if ($canDelete) {
-                $url    = handles('ban_management.bannedemails.destroy', ['id' => $row->id]);
+                $url    = route('bannedemails.destroy', ['id' => $row->id]);
                 $btns[] = $html->create('li', $html->link($url, trans('antares/ban_management::label.rule.delete'), [
                             'data-icon'        => 'delete',
                             'class'            => 'triggerable confirm',

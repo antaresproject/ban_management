@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,21 +14,21 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Processor;
+namespace Antares\Modules\BanManagement\Processor;
 
-use Antares\BanManagement\Validation\ValidationHelper;
+use Antares\Modules\BanManagement\Validation\ValidationHelper;
 use Antares\Foundation\Processor\Processor;
-use Antares\BanManagement\Contracts\RuleListener;
-use Antares\BanManagement\Contracts\RuleStoreListener;
-use Antares\BanManagement\Contracts\RuleUpdateListener;
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Http\Presenters\RulesPresenter;
-use Antares\BanManagement\Validation\RuleValidation;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Contracts\RuleListener;
+use Antares\Modules\BanManagement\Contracts\RuleStoreListener;
+use Antares\Modules\BanManagement\Contracts\RuleUpdateListener;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Http\Presenters\RulesPresenter;
+use Antares\Modules\BanManagement\Validation\RuleValidation;
+use Antares\Modules\BanManagement\Model\Rule;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Events\Dispatcher;
@@ -95,7 +95,7 @@ class RulesProcessor extends Processor
     /**
      * Returns the array of all rules.
      *
-     * @return Collection|\Antares\BanManagement\Contracts\RuleContract[]
+     * @return Collection|\Antares\Modules\BanManagement\Contracts\RuleContract[]
      */
     public function getAll()
     {
@@ -103,7 +103,7 @@ class RulesProcessor extends Processor
     }
 
     /**
-     * @return \Antares\BanManagement\Contracts\RuleContract[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Antares\Modules\BanManagement\Contracts\RuleContract[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getWhitelist()
     {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,16 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Collections;
+namespace Antares\Modules\BanManagement\Collections;
 
-use Mockery as m;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
 use Antares\Testbench\TestCase;
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Contracts\RuleContract;
+use Mockery as m;
 
 class RuleTest extends TestCase
 {
@@ -40,6 +40,9 @@ class RuleTest extends TestCase
         $this->repository = m::mock(RulesRepositoryContract::class);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function tearDown()
     {
         parent::tearDown();

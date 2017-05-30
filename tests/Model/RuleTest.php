@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,21 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Model;
+namespace Antares\Modules\BanManagement\Model;
 
-use Antares\Testbench\TestCase;
-use Antares\BanManagement\Contracts\RuleContract;
+use Antares\Testing\ApplicationTestCase;
+use Antares\Modules\BanManagement\Contracts\RuleContract;
+use Antares\Support\Traits\Testing\EloquentConnectionTrait;
 use Carbon\Carbon;
 
-class RuleTest extends TestCase
+class RuleTest extends ApplicationTestCase
 {
+
+    use EloquentConnectionTrait;
 
     public function testContract()
     {
@@ -56,7 +59,7 @@ class RuleTest extends TestCase
         $this->assertFalse($rule->isEnabled());
         $this->assertTrue($rule->isTrusted());
         $this->assertEquals('localhost', $rule->getValue());
-        $this->assertEquals($date, $rule->getExpirationDate());
+        $this->assertEquals($date->format('Y-m-d'), $rule->getExpirationDate()->format('Y-m-d'));
     }
 
 }

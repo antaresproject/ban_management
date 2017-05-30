@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,17 +14,17 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Carbon\Carbon;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Console\Kernel;
-use Antares\BanManagement\Config;
+use Antares\Modules\BanManagement\Config;
 use Closure;
 
 class ThrottleRequestsMiddleware
@@ -73,8 +73,6 @@ class ThrottleRequestsMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-
         $key          = $request->fingerprint();
         $maxAttempts  = $this->config->getMaxFailedAttempts();
         $decayMinutes = $this->config->getAttemptsDecay();

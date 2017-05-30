@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,14 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Listeners;
+namespace Antares\Modules\BanManagement\Listeners;
 
-use Antares\BanManagement\Processor\RulesProcessor;
-use Antares\BanManagement\Validation\ConfigValidation;
+use Antares\Modules\BanManagement\Processor\RulesProcessor;
+use Antares\Modules\BanManagement\Validation\ConfigValidation;
 use Antares\Foundation\Events\SecurityFormSubmitted;
 use Illuminate\Container\Container;
 use Antares\Model\Component;
@@ -82,7 +82,7 @@ class ConfigStoreListener
         try {
             $options     = (array) array_get($data, 'options', []);
             $ipWhitelist = array_get($data, 'rules.ip-whitelist', '');
-            $rules       = array_filter(explode("\r\n", $ipWhitelist));
+            $rules       = array_filter(explode(",", $ipWhitelist));
 
             $this->storeExtensionOptions($options);
             $this->rulesProcessor->storeWhiteList($rules);
@@ -101,7 +101,7 @@ class ConfigStoreListener
      */
     protected function storeExtensionOptions(array $options)
     {
-        $component          = Component::query()->where('name', 'ban_management')->first();
+        $component          = Component::findOneByName('antaresproject/module-ban_management');
         $component->options = array_merge($component->options, $options);
         $component->save();
     }

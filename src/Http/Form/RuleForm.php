@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Form;
+namespace Antares\Modules\BanManagement\Http\Form;
 
 use Antares\Contracts\Html\Form\Factory as FormFactory;
 use Antares\Contracts\Html\Form\Fieldset;
 use Antares\Contracts\Html\Form\Grid as FormGrid;
 use Antares\Contracts\Html\Form\Presenter;
-use Antares\BanManagement\Model\Rule;
-use Antares\BanManagement\Validation\RuleValidation;
+use Antares\Modules\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Validation\RuleValidation;
 
 class RuleForm
 {
@@ -66,7 +66,7 @@ class RuleForm
      *
      * 
      * @param boolean $canBanSelf
-     * @return \Antares\BanManagement\Http\Form\RuleForm
+     * @return \Antares\Modules\BanManagement\Http\Form\RuleForm
      */
     public function canBanSelf($canBanSelf)
     {
@@ -83,11 +83,12 @@ class RuleForm
      */
     public function build(Presenter $listener, Rule $rule)
     {
-//        vdump(handles('antares::ban_management/rules/update/'));
-//        exit;
+
         publish('ban_management', 'assets.scripts');
         return $this->form->of('antares.ban_management.rules', function(FormGrid $form) use($listener, $rule) {
-                    $url  = $rule->exists ? handles('ban_management.rules.update', compact('rule')) : handles('ban_management.rules.store');
+
+                    $url = $rule->exists ? handles('antares::ban_management/rules', compact('rule')) : handles('antares::ban_management/rules');
+
                     $attr = ['method' => $rule->exists ? 'PUT' : 'POST'];
 
                     $form->setup($listener, $url, $rule, $attr);

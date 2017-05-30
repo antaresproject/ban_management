@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,13 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement;
+namespace Antares\Modules\BanManagement;
 
 use Illuminate\Container\Container;
+use Antares\Extension\Contracts\Config\SettingsContract;
 
 class Config
 {
@@ -35,7 +36,7 @@ class Config
     /**
      * Extension's global options.
      *
-     * @var array
+     * @var SettingsContract
      */
     protected $options;
 
@@ -46,7 +47,7 @@ class Config
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->options   = (array) $this->container->make('antares.extension')->getExtensionOptions('ban_management');
+        $this->options   = $this->container->make('antares.extension')->getSettings('antaresproject/module-ban_management');
     }
 
     /**
@@ -56,7 +57,7 @@ class Config
      */
     public function getMaxFailedAttempts()
     {
-        return (int) array_get($this->options, 'max_failed_attempts', 50);
+        return (int) $this->options->getValueByName('max_failed_attempts', 5);
     }
 
     /**
@@ -66,7 +67,7 @@ class Config
      */
     public function getAttemptsDecay()
     {
-        return (int) array_get($this->options, 'attempts_decay_minutes', 1440);
+        return (int) $this->options->getValueByName('attempts_decay_minutes', 1440);
     }
 
     /**
@@ -76,7 +77,7 @@ class Config
      */
     public function hasCookieTracking()
     {
-        return (bool) array_get($this->options, 'cookie_tracking', false);
+        return (bool) $this->options->getValueByName('cookie_tracking', false);
     }
 
 }

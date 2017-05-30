@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,45 +14,42 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement;
+namespace Antares\Modules\BanManagement;
 
-use Antares\Acl\Action;
-use Antares\Acl\RoleActionList;
-use Antares\BanManagement\Console\Commands\BannedEmails\AddCommand;
-use Antares\BanManagement\Console\Commands\BannedEmails\ListCommand;
-use Antares\BanManagement\Console\Commands\BannedEmails\SyncCommand;
-use Antares\BanManagement\Console\Commands\Rules\AddCommand as AddCommand2;
-use Antares\BanManagement\Console\Commands\Rules\ListCommand as ListCommand2;
-use Antares\BanManagement\Contracts\BannedEmailsRepositoryContract;
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Events\Banned;
-use Antares\BanManagement\Http\Handlers\BansBreadcrumbMenu;
-use Antares\BanManagement\Http\Handlers\SimpleConfig;
-use Antares\BanManagement\Http\Middleware\BannedEmailMiddleware;
-use Antares\BanManagement\Http\Middleware\CookieBanMiddleware;
-use Antares\BanManagement\Http\Middleware\FirewallMiddleware;
-use Antares\BanManagement\Http\Middleware\ThrottleRequestsMiddleware;
-use Antares\BanManagement\Http\Placeholder\BansPlaceholder;
-use Antares\BanManagement\Listeners\ConfigStoreListener;
-use Antares\BanManagement\Listeners\CookieBanListener;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Model\Rule;
-use Antares\BanManagement\Repositories\BannedEmailsRepository;
-use Antares\BanManagement\Repositories\RulesRepository;
-use Antares\BanManagement\Services\RouteService;
+use Antares\Modules\BanManagement\Console\Commands\BannedEmails\AddCommand;
+use Antares\Modules\BanManagement\Console\Commands\BannedEmails\ListCommand;
+use Antares\Modules\BanManagement\Console\Commands\BannedEmails\SyncCommand;
+use Antares\Modules\BanManagement\Console\Commands\Rules\AddCommand as AddCommand2;
+use Antares\Modules\BanManagement\Console\Commands\Rules\ListCommand as ListCommand2;
+use Antares\Modules\BanManagement\Contracts\BannedEmailsRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Events\Banned;
+use Antares\Modules\BanManagement\Http\Handlers\BansBreadcrumbMenu;
+use Antares\Modules\BanManagement\Http\Handlers\SimpleConfig;
+use Antares\Modules\BanManagement\Http\Middleware\BannedEmailMiddleware;
+use Antares\Modules\BanManagement\Http\Middleware\CookieBanMiddleware;
+use Antares\Modules\BanManagement\Http\Middleware\FirewallMiddleware;
+use Antares\Modules\BanManagement\Http\Middleware\ThrottleRequestsMiddleware;
+use Antares\Modules\BanManagement\Http\Placeholder\BansPlaceholder;
+use Antares\Modules\BanManagement\Listeners\ConfigStoreListener;
+use Antares\Modules\BanManagement\Listeners\CookieBanListener;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Repositories\BannedEmailsRepository;
+use Antares\Modules\BanManagement\Repositories\RulesRepository;
+use Antares\Modules\BanManagement\Services\RouteService;
 use Antares\Foundation\Support\Factories\MenuFactory;
 use Antares\Foundation\Support\Providers\ModuleServiceProvider;
-use Antares\Model\Role;
 use Carbon\Carbon;
 use Illuminate\Routing\Router;
 use M6Web\Component\Firewall\Entry\EntryFactory;
 use Validator;
 use Antares\Foundation\Events\SecurityFormSubmitted;
-use Antares\BanManagement\Services\DDoSService;
+use Antares\Modules\BanManagement\Services\DDoSService;
 
 class BanManagementServiceProvider extends ModuleServiceProvider
 {
@@ -62,7 +59,7 @@ class BanManagementServiceProvider extends ModuleServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'Antares\BanManagement\Http\Controllers\Admin';
+    protected $namespace = 'Antares\Modules\BanManagement\Http\Controllers\Admin';
 
     /**
      * The application or extension group namespace.
@@ -86,6 +83,7 @@ class BanManagementServiceProvider extends ModuleServiceProvider
         SecurityFormSubmitted::class  => [
             ConfigStoreListener::class,
         ],
+        'antares.started: admin'      => \Antares\Modules\BanManagement\Http\Handlers\Menu::class
     ];
 
     /**
@@ -128,13 +126,11 @@ class BanManagementServiceProvider extends ModuleServiceProvider
 
     /**
      * Boot the extension.
-     *
-     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
-
+        parent::boot();
+        $router = $this->app->make(Router::class);
         $this->app->make('view')->composer('antares/ban_management::*', BansPlaceholder::class);
 
         if ($this->app->make(Config::class)->hasCookieTracking()) {
@@ -165,8 +161,8 @@ class BanManagementServiceProvider extends ModuleServiceProvider
      */
     protected function extendValidator()
     {
-        Validator::extend('notSubmitterIpHostname', '\Antares\BanManagement\Validation\CustomRules@notSubmitterIpHostname');
-        Validator::extend('notSubmitterEmail', '\Antares\BanManagement\Validation\CustomRules@notSubmitterEmail');
+        Validator::extend('notSubmitterIpHostname', '\Antares\Modules\BanManagement\Validation\CustomRules@notSubmitterIpHostname');
+        Validator::extend('notSubmitterEmail', '\Antares\Modules\BanManagement\Validation\CustomRules@notSubmitterEmail');
     }
 
     protected function registerModelsEvents()
@@ -187,44 +183,15 @@ class BanManagementServiceProvider extends ModuleServiceProvider
      */
     protected function bootMenu()
     {
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
         $menuFactory = $this->app->make(MenuFactory::class);
         $handlers    = [BansBreadcrumbMenu::class];
+
         $menuFactory->with('menu.top.ban_management')
                 ->withHandlers($handlers)
                 ->compose('antares/ban_management::admin.list', ['name' => 'ban_management', 'title' => 'antares/ban_management::title.menu.add']);
-    }
-
-    /**
-     * Returns the collection of the ACL actions.
-     *
-     * @return RoleActionList
-     */
-    public static function acl()
-    {
-        $actions = [
-            new Action('admin.ban_management.rules.index', 'List Rules'),
-            new Action('admin.ban_management.rules.create', 'Add Rule'),
-            new Action('admin.ban_management.rules.store', 'Add Rule'),
-            new Action('admin.ban_management.rules.edit', 'Update Rule'),
-            new Action('admin.ban_management.rules.update', 'Update Rule'),
-            new Action('admin.ban_management.rules.destroy', 'Delete Rule'),
-            new Action('admin.ban_management.bannedemails.index', 'List Banned Emails'),
-            new Action('admin.ban_management.bannedemails.create', 'Add Banned Email'),
-            new Action('admin.ban_management.bannedemails.store', 'Add Banned Email'),
-            new Action('admin.ban_management.bannedemails.edit', 'Update Banned Email'),
-            new Action('admin.ban_management.bannedemails.update', 'Update Banned Email'),
-            new Action('admin.ban_management.bannedemails.destroy', 'Delete Banned Email'),
-        ];
-
-        $adminActions = array_merge($actions, [
-            new Action('admin.ban_management.configuration', 'Configuration'),
-        ]);
-
-        $permissions = new RoleActionList;
-        $permissions->add(Role::admin()->name, $adminActions);
-        $permissions->add(Role::member()->name, $actions);
-
-        return $permissions;
     }
 
 }

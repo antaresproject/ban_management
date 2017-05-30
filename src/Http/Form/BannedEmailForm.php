@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Form;
+namespace Antares\Modules\BanManagement\Http\Form;
 
 use Antares\Contracts\Html\Form\Factory as FormFactory;
 use Antares\Contracts\Html\Form\Fieldset;
 use Antares\Contracts\Html\Form\Grid as FormGrid;
 use Antares\Contracts\Html\Form\Presenter;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Validation\BannedEmailValidation;
+use Antares\Modules\BanManagement\Model\BannedEmail;
+use Antares\Modules\BanManagement\Validation\BannedEmailValidation;
 
 class BannedEmailForm
 {
@@ -65,7 +65,7 @@ class BannedEmailForm
     public function build(Presenter $listener, BannedEmail $bannedEmail)
     {
         return $this->form->of('antares.ban_management.banned-emails', function(FormGrid $form) use($listener, $bannedEmail) {
-                    $url = $bannedEmail->exists ? handles('ban_management.bannedemails.update', compact('bannedEmail')) : handles('ban_management.bannedemails.store');
+                    $url = $bannedEmail->exists ? route('bannedemails.update', compact('bannedEmail')) : route('bannedemails.store');
 
                     $attr = ['method' => $bannedEmail->exists ? 'PUT' : 'POST'];
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,14 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Antares\BanManagement\Repositories\RulesRepository;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Repositories\RulesRepository;
+use Antares\Modules\BanManagement\Model\Rule;
 
 class DDoSService
 {
@@ -61,7 +61,7 @@ class DDoSService
         if (request()->ajax()) {
             return $this;
         }
-        if (!isset($_SESSION)) {
+        if (!isset($_SESSION) && php_sapi_name() !== 'cli') {
             session_start();
         }
         $interval = array_get($this->config, 'interval', 5);

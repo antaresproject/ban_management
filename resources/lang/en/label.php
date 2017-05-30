@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,7 +14,7 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 return [
@@ -33,7 +33,8 @@ return [
         'trusted_tip'     => 'Rule defined as trusted will be added to the whitelist. Useful when ban subject is a wide range.',
     ],
     'config' => [
-        'max-attempts' => 'Automatically ban IP on X failed login attempts',
-        'ip-whitelist' => 'IP Whitelist',
+        'max-attempts'      => 'Automatically ban IP on X failed login attempts',
+        'ip-whitelist'      => 'IP Whitelist',
+        'ip_whitelist_help' => 'Use the IP Whitelist to exempt specific IP addresses (IPs) from a number of security restrictions. There is also a feature to allow you to use a comma separated values eg.: 8.8.8.8,192.168.1.219.'
     ],
 ];

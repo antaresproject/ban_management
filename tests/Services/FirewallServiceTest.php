@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,19 +14,19 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
 use Mockery as m;
 use Antares\Testbench\TestCase;
-use Antares\BanManagement\Model\PlainRule;
-use Antares\BanManagement\Collections\Rules;
+use Antares\Modules\BanManagement\Model\PlainRule;
+use Antares\Modules\BanManagement\Collections\Rules;
 use M6Web\Component\Firewall\Entry\EntryFactory;
 use M6Web\Component\Firewall\Lists\ListMerger;
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
 
 class FirewallServiceTest extends TestCase
 {

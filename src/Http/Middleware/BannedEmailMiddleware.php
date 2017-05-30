@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
-use Antares\BanManagement\Http\Controllers\BannedController;
+use Antares\Modules\BanManagement\Http\Controllers\BannedController;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Container\Container;
-use Antares\BanManagement\Services\BannedEmailService;
-use Antares\BanManagement\Contracts\BanReasonContract;
-use Antares\BanManagement\Services\RouteService;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
+use Antares\Modules\BanManagement\Contracts\BanReasonContract;
+use Antares\Modules\BanManagement\Services\RouteService;
 use Antares\Contracts\Auth\Guard;
 use Closure;
 
@@ -42,7 +42,7 @@ class BannedEmailMiddleware
     /**
      * Service for banned emails.
      *
-     * @var BannedEmailService
+     * @var BannedEmailsService
      */
     protected $bannedEmailService;
 
@@ -67,7 +67,7 @@ class BannedEmailMiddleware
      * @param RouteService $routeService
      * @param Guard $guard
      */
-    public function __construct(Container $container, BannedEmailService $bannedEmailService, RouteService $routeService, Guard $guard)
+    public function __construct(Container $container, BannedEmailsService $bannedEmailService, RouteService $routeService, Guard $guard)
     {
         $this->container          = $container;
         $this->bannedEmailService = $bannedEmailService;

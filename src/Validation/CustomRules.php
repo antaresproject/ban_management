@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Validation;
+namespace Antares\Modules\BanManagement\Validation;
 
-use Antares\BanManagement\Model\PlainRule;
+use Antares\Modules\BanManagement\Model\PlainRule;
 use Illuminate\Http\Request;
 use Antares\Contracts\Auth\Guard;
-use Antares\BanManagement\Services\FirewallService;
-use Antares\BanManagement\Services\BannedEmailService;
-use Antares\BanManagement\Rules\Email;
+use Antares\Modules\BanManagement\Services\FirewallService;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
+use Antares\Modules\BanManagement\Rules\Email;
 
 class CustomRules
 {
@@ -63,9 +63,9 @@ class CustomRules
      * @param Request $request
      * @param Guard $guard
      * @param FirewallService $firewallService
-     * @param BannedEmailService $bannedEmailService
+     * @param BannedEmailsService $bannedEmailService
      */
-    public function __construct(Request $request, Guard $guard, FirewallService $firewallService, BannedEmailService $bannedEmailService)
+    public function __construct(Request $request, Guard $guard, FirewallService $firewallService, BannedEmailsService $bannedEmailService)
     {
         $this->request            = $request;
         $this->guard              = $guard;

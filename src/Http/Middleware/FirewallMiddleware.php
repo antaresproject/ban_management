@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,18 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Http\Middleware;
+namespace Antares\Modules\BanManagement\Http\Middleware;
 
 use Illuminate\Events\Dispatcher;
-use Antares\BanManagement\Http\Controllers\BannedController;
-use Antares\BanManagement\Services\FirewallService;
-use Antares\BanManagement\Events\Banned as BannedEvent;
-use Antares\BanManagement\Contracts\BanReasonContract;
-use Antares\BanManagement\Services\RouteService;
+use Antares\Modules\BanManagement\Http\Controllers\BannedController;
+use Antares\Modules\BanManagement\Services\FirewallService;
+use Antares\Modules\BanManagement\Events\Banned as BannedEvent;
+use Antares\Modules\BanManagement\Contracts\BanReasonContract;
+use Antares\Modules\BanManagement\Services\RouteService;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Container\Container;
 use Closure;

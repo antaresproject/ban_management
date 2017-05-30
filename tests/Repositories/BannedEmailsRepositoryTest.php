@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,16 +14,17 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Repositories;
+namespace Antares\Modules\BanManagement\Repositories;
 
-use Antares\Testing\TestCase;
-use Antares\BanManagement\Model\BannedEmail;
-use CreateBanEmailsTables;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Antares\Testing\TestCase;
+use Carbon\Carbon;
 use Faker\Factory;
 
 class BannedEmailsRepositoryTest extends TestCase
@@ -37,9 +38,6 @@ class BannedEmailsRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        $this->app->make(CreateBanEmailsTables::class)->up();
-
         $this->repository = new BannedEmailsRepository(new BannedEmail);
     }
 
@@ -76,87 +74,102 @@ class BannedEmailsRepositoryTest extends TestCase
 
     public function testFindByIdMethod()
     {
+        BannedEmail::query()->delete();
+        DB::beginTransaction();
+
         $faker = Factory::create();
 
         foreach (range(0, 20) as $index) {
             BannedEmail::create([
-                'email' => $faker->email,
+                'email'      => $faker->email,
+                'expired_at' => Carbon::today()->addDays(1)
             ]);
         }
-
-        $model = $this->repository->findById(1);
+        $model = $this->repository->findById(BannedEmail::first()->id);
         $empty = $this->repository->findById(999);
 
         $this->assertInstanceOf(BannedEmail::class, $model);
         $this->assertNull($empty);
+        DB::rollback();
     }
 
     public function testFindByEmailMethod()
     {
+        BannedEmail::query()->delete();
+        DB::beginTransaction();
         $faker = Factory::create();
 
         foreach (range(0, 20) as $index) {
             BannedEmail::create([
-                'email' => $faker->email,
+                'email'      => $faker->email,
+                'expired_at' => Carbon::today()->addDays(1)
             ]);
         }
 
-        $email = BannedEmail::find(1)->email;
+        $email = BannedEmail::find(BannedEmail::first()->id)->email;
 
         $model = $this->repository->findByEmail($email);
         $empty = $this->repository->findByEmail($faker->email);
 
         $this->assertInstanceOf(BannedEmail::class, $model);
         $this->assertNull($empty);
+        DB::rollback();
     }
 
     public function testStoreMethod()
     {
+        DB::beginTransaction();
         $this->assertCount(0, $this->repository->all());
 
         $faker = Factory::create();
 
         $model = new BannedEmail;
         $model->fill([
-            'email'  => $faker->email,
-            'reason' => $faker->paragraph,
+            'email'      => $faker->email,
+            'reason'     => $faker->paragraph,
+            'expired_at' => Carbon::today()->addDays(1)
         ]);
 
         $response = $this->repository->store($model);
 
         $this->assertCount(1, $this->repository->all());
         $this->assertNull($response);
+        DB::rollback();
     }
 
     public function testUpdateMethod()
     {
+        DB::beginTransaction();
         $faker = Factory::create();
 
         $model = new BannedEmail;
         $model->fill([
-            'id'     => 1,
-            'email'  => $faker->email,
-            'reason' => 'old reason',
+            'email'      => $faker->email,
+            'reason'     => 'old reason',
+            'expired_at' => Carbon::today()->addDays(1)
         ]);
 
         $this->repository->store($model);
-        $model         = $this->repository->findById(1);
+        $model         = $this->repository->findById(BannedEmail::first()->id);
         $model->reason = 'new reason';
 
         $response = $this->repository->update($model);
-        $model    = $this->repository->findById(1);
+        $model    = $this->repository->findById(BannedEmail::first()->id);
 
         $this->assertEquals('new reason', $model->getReason());
         $this->assertNull($response);
+        DB::rollback();
     }
 
     public function testDeleteMethod()
     {
+        DB::beginTransaction();
         $faker = Factory::create();
 
         $model = new BannedEmail;
         $model->fill([
-            'email' => $faker->email,
+            'email'      => $faker->email,
+            'expired_at' => Carbon::today()->addDays(1)
         ]);
 
         $this->repository->store($model);
@@ -167,6 +180,7 @@ class BannedEmailsRepositoryTest extends TestCase
 
         $this->assertCount(0, $this->repository->all());
         $this->assertNull($response);
+        DB::rollback();
     }
 
 }

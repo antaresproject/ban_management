@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,14 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Repositories;
+namespace Antares\Modules\BanManagement\Repositories;
 
-use Antares\BanManagement\Contracts\RulesRepositoryContract;
-use Antares\BanManagement\Model\Rule;
+use Antares\Modules\BanManagement\Contracts\RulesRepositoryContract;
+use Antares\Modules\BanManagement\Model\Rule;
 use Carbon\Carbon;
 
 class RulesRepository implements RulesRepositoryContract

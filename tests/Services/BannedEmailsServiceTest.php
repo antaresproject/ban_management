@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,20 +14,22 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\BanManagement\Services;
+namespace Antares\Modules\BanManagement\Services;
 
-use Mockery as m;
-use Antares\Testing\TestCase;
-use Antares\BanManagement\Services\BannedEmailsService;
-use Antares\BanManagement\Model\BannedEmail;
-use Antares\BanManagement\Repositories\BannedEmailsRepository;
+use Antares\Modules\BanManagement\Repositories\BannedEmailsRepository;
+use Antares\Modules\BanManagement\Services\BannedEmailsService;
+use Antares\Modules\BanManagement\Model\BannedEmail;
 use Illuminate\Filesystem\Filesystem;
-use Faker\Factory;
+use Illuminate\Support\Facades\DB;
+use Antares\Testing\TestCase;
 use CreateBanEmailsTables;
+use Faker\Factory;
+use Carbon\Carbon;
+use Mockery as m;
 
 class BannedEmailsServiceTest extends TestCase
 {
@@ -63,11 +65,13 @@ class BannedEmailsServiceTest extends TestCase
      */
     protected function getBannedEmailsService()
     {
-        return new BannedEmailService($this->repository, $this->filesystem);
+        return new BannedEmailsService($this->repository, $this->filesystem);
     }
 
     public function testSaveToFile()
     {
+        BannedEmail::query()->delete();
+        DB::beginTransaction();
         $faker   = Factory::create();
         $service = $this->getBannedEmailsService();
         $service->saveToFile();
@@ -77,7 +81,8 @@ class BannedEmailsServiceTest extends TestCase
 
         foreach (range(0, 40) as $index) {
             BannedEmail::create([
-                'email' => $faker->email,
+                'email'      => $faker->email,
+                'expired_at' => Carbon::today()->addDays(1)
             ]);
         }
 
@@ -85,45 +90,52 @@ class BannedEmailsServiceTest extends TestCase
 
         $this->assertCount(BannedEmail::count(), $service->getEmailTemplates());
         $this->assertInternalType('array', $service->getEmailTemplates());
+        DB::rollBack();
     }
 
-    public function testGetEmails()
+    public function testGetEmailTemplates()
     {
+        BannedEmail::query()->delete();
+        DB::beginTransaction();
         $faker   = Factory::create();
         $service = $this->getBannedEmailsService();
 
         foreach (range(0, 40) as $index) {
             BannedEmail::create([
-                'email' => $faker->email,
+                'email'      => $faker->email,
+                'expired_at' => Carbon::today()->addDays(1)
             ]);
         }
 
         $service->saveToFile();
         $emails = $service->getEmailTemplates();
-
         foreach (BannedEmail::get() as $model) {
-            $this->assertTrue(in_array($model->getEmailTemplates(), $emails));
+            $this->assertTrue(in_array($model->getEmail(), $emails));
         }
+        DB::rollback();
     }
 
     public function testIsEmailBanned()
     {
+        BannedEmail::query()->delete();
+        DB::beginTransaction();
         $faker   = Factory::create();
         $service = $this->getBannedEmailsService();
 
         foreach (range(0, 40) as $index) {
             BannedEmail::create([
-                'email' => $faker->email,
+                'email'      => $faker->email,
+                'expired_at' => Carbon::today()->addDays(1)
             ]);
         }
 
         $service->saveToFile();
 
         foreach (BannedEmail::get() as $model) {
-            $this->assertTrue($service->isEmailBanned($model->getEmailTemplates()));
+            $this->assertTrue($service->isEmailBanned($model->getEmail()));
         }
 
-        $this->assertFalse($service->isEmailBanned($faker->email));
+        DB::rollback();
     }
 
 }
