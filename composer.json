@@ -4,6 +4,8 @@
     "type": "antaresproject-module",
     "homepage": "https://github.com/antaresproject/ban_management",
     "version": "0.9.2.1",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Antares Team",
@@ -11,7 +13,7 @@
         }
     ],
     "require": {
-        "antaresproject/component-installer-plugin": "0.9.2.1-dev",
+        "antaresproject/component-installer-plugin": "0.9.2.x-dev",
         "php": ">=7.0.1",
         "m6web/firewall": "dev-master"
     },
