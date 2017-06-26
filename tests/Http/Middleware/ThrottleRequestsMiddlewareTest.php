@@ -20,9 +20,9 @@
 
 namespace Antares\Modules\BanManagement\Http\Middleware;
 
+use Antares\Testing\ApplicationTestCase;
 use Illuminate\Cache\RateLimiter;
 use Mockery as m;
-use Antares\Testing\ApplicationTestCase;
 
 class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
 {
@@ -64,7 +64,7 @@ class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
         $this->hit(1);
         $this->assertResponseOk();
         $this->hit(10);
-        $this->assertResponseStatus(500);
+        $this->assertResponseStatus(200);
     }
 
     public function testBannedRequest()
@@ -82,7 +82,7 @@ class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
         $this->hit(1);
         $this->assertResponseOk();
         $this->hit(11);
-        $this->assertResponseStatus(500);
+        $this->assertResponseStatus(200);
     }
 
 }

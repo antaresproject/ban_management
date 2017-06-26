@@ -20,8 +20,8 @@
 
 namespace Antares\Modules\BanManagement\Listeners;
 
-use Mockery as m;
 use Antares\Testbench\TestCase;
+use Mockery as m;
 
 class CookieBanListenerTest extends TestCase
 {
@@ -36,12 +36,6 @@ class CookieBanListenerTest extends TestCase
         parent::setUp();
 
         $this->cookieBanService = m::mock('\Antares\Modules\BanManagement\Services\CookieBanService');
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
     }
 
     public function testHandleMethod()

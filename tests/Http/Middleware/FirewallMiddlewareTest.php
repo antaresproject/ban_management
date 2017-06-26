@@ -20,10 +20,10 @@
 
 namespace Antares\Modules\BanManagement\Http\Middleware;
 
-use Mockery as m;
+use Antares\Modules\BanManagement\Http\Controllers\BannedController;
 use Antares\Testbench\TestCase;
 use Illuminate\Http\Response;
-use Antares\Modules\BanManagement\Http\Controllers\BannedController;
+use Mockery as m;
 
 class FirewallMiddlewareTest extends TestCase
 {

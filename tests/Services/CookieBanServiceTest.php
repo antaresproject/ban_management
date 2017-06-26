@@ -20,8 +20,8 @@
 
 namespace Antares\Modules\BanManagement\Services;
 
-use Mockery as m;
 use Antares\Testbench\TestCase;
+use Mockery as m;
 
 class CookieBanServiceTest extends TestCase
 {
@@ -48,12 +48,6 @@ class CookieBanServiceTest extends TestCase
         $this->request   = m::mock('\Illuminate\Http\Request');
         $this->cookieJar = m::mock('\Illuminate\Cookie\CookieJar');
         $this->cookie    = m::mock('\Symfony\Component\HttpFoundation\Cookie');
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
     }
 
     /**

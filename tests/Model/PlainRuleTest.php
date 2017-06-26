@@ -20,8 +20,8 @@
 
 namespace Antares\Modules\BanManagement\Model;
 
-use Antares\Testbench\TestCase;
 use Antares\Modules\BanManagement\Contracts\RuleContract;
+use Antares\Testbench\TestCase;
 use Carbon\Carbon;
 
 class PlainRuleTest extends TestCase

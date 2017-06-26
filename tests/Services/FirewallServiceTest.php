@@ -57,12 +57,6 @@ class FirewallServiceTest extends TestCase
         $this->listMerger   = new ListMerger;
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     /**
      * @return Rules
      */

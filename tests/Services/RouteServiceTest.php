@@ -20,17 +20,11 @@
 
 namespace Antares\Modules\BanManagement\Services;
 
-use Mockery as m;
 use Antares\Testbench\TestCase;
+use Mockery as m;
 
 class RouteServiceTest extends TestCase
 {
-
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
 
     /**
      * @param string $name

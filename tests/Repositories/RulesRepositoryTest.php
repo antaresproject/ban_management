@@ -61,7 +61,6 @@ class RulesRepositoryTest extends TestCase
     {
         DB::beginTransaction();
         $faker = Factory::create();
-
         foreach (range(0, 20) as $index) {
             Rule::create([
                 'value'  => $faker->ipv4,

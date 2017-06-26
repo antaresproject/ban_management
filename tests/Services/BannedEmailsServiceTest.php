@@ -54,12 +54,6 @@ class BannedEmailsServiceTest extends TestCase
         $this->filesystem = $this->app->make(Filesystem::class);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     /**
      * @return BannedEmailService
      */

@@ -41,13 +41,16 @@ class RulesBreadcrumb extends Navigation
      */
     public function onIndex()
     {
-        $this->breadcrumbs->register(self::$name, function(Generator $breadcrumbs) {
-            $breadcrumbs->push(trans('antares/ban_management::messages.breadcrumbs.ban_management'), handles('antares::ban_management/rules/datatable'));
-        });
-
-        $this->breadcrumbs->register(self::$name . '-rules', function(Generator $breadcrumbs) {
-            $breadcrumbs->parent(self::$name);
-        });
+        if (!$this->breadcrumbs->exists(self::$name)) {
+            $this->breadcrumbs->register(self::$name, function(Generator $breadcrumbs) {
+                $breadcrumbs->push(trans('antares/ban_management::messages.breadcrumbs.ban_management'), handles('antares::ban_management/rules/datatable'));
+            });
+        }
+        if (!$this->breadcrumbs->exists(self::$name . '-rules')) {
+            $this->breadcrumbs->register(self::$name . '-rules', function(Generator $breadcrumbs) {
+                $breadcrumbs->parent(self::$name);
+            });
+        }
 
         $this->shareOnView(self::$name);
     }
@@ -63,13 +66,14 @@ class RulesBreadcrumb extends Navigation
         $this->onIndex();
 
         $name = $rule->exists ? 'rule-' . $rule->getValue() : 'rule-add';
-
-        $this->breadcrumbs->register($name, function(Generator $breadcrumbs) use($rule) {
-            $trans = 'antares/ban_management::messages.breadcrumbs';
-            $name  = $rule->exists ? trans($trans . '.ip_edit', ['ip' => $rule->getValue()]) : trans($trans . '.ip_create');
-            $breadcrumbs->parent(self::$name . '-rules');
-            $breadcrumbs->push($name);
-        });
+        if (!$this->breadcrumbs->exists($name)) {
+            $this->breadcrumbs->register($name, function(Generator $breadcrumbs) use($rule) {
+                $trans = 'antares/ban_management::messages.breadcrumbs';
+                $name  = $rule->exists ? trans($trans . '.ip_edit', ['ip' => $rule->getValue()]) : trans($trans . '.ip_create');
+                $breadcrumbs->parent(self::$name . '-rules');
+                $breadcrumbs->push($name);
+            });
+        }
 
         $this->shareOnView($name);
     }

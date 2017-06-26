@@ -20,9 +20,8 @@
 
 namespace Antares\Modules\BanManagement\Rules;
 
-use Mockery as m;
-use Antares\Testbench\TestCase;
 use M6Web\Component\Firewall\Entry\AbstractEntry;
+use Antares\Testbench\TestCase;
 
 class EmailTest extends TestCase
 {

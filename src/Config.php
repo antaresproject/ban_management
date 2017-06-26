@@ -57,7 +57,7 @@ class Config
      */
     public function getMaxFailedAttempts()
     {
-        return (int) $this->options->getValueByName('max_failed_attempts', 5);
+        return (int) !is_null($this->options) ? $this->options->getValueByName('max_failed_attempts', 5) : 5;
     }
 
     /**
@@ -67,7 +67,7 @@ class Config
      */
     public function getAttemptsDecay()
     {
-        return (int) $this->options->getValueByName('attempts_decay_minutes', 1440);
+        return (int) !is_null($this->options) ? $this->options->getValueByName('attempts_decay_minutes', 1440) : 1440;
     }
 
     /**
@@ -77,7 +77,8 @@ class Config
      */
     public function hasCookieTracking()
     {
-        return (bool) $this->options->getValueByName('cookie_tracking', false);
+
+        return (bool) !is_null($this->options) ? $this->options->getValueByName('cookie_tracking', false) : false;
     }
 
 }

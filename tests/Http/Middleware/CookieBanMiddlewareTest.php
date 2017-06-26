@@ -20,8 +20,8 @@
 
 namespace Antares\Modules\BanManagement\Http\Middleware;
 
-use Mockery as m;
 use Antares\Testbench\TestCase;
+use Mockery as m;
 
 class CookieBanMiddlewareTest extends TestCase
 {
