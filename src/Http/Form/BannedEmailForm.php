@@ -72,9 +72,9 @@ class BannedEmailForm
                     $form->setup($listener, $url, $bannedEmail, $attr);
                     $form->name('Banned Emails Form');
                     $form->hidden('id');
-                    $form->layout('antares/foundation::components.form');
 
-                    $form->fieldset($bannedEmail->exists ? 'Edit Banned Email' : 'New Banned Email', function (Fieldset $fieldset) use($bannedEmail) {
+                    $form->fieldset(function (Fieldset $fieldset) use($bannedEmail) {
+                        $fieldset->legend($bannedEmail->exists ? 'Edit Banned Email' : 'New Banned Email');
                         $this->setupFieldset($fieldset, $bannedEmail);
                     });
 

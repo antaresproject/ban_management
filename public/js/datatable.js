@@ -1,5 +1,4 @@
-(function ($, document) {
-    'use strict';
+$(document).ready(function () {
     $('input.datepicker-expired_at').datetimepicker({
         timepicker: false,
         format: 'Y-m-d'
@@ -22,4 +21,4 @@
         api.column(columnId).search(val, true, false).draw();
     });
 
-})(jQuery, document);
+});

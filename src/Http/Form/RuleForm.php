@@ -94,9 +94,10 @@ class RuleForm
                     $form->setup($listener, $url, $rule, $attr);
                     $form->name('Ban rule form');
                     $form->hidden('id');
-                    $form->layout('antares/foundation::components.form');
 
-                    $form->fieldset($rule->exists ? 'Edit IP Rule' : 'New IP Rule', function (Fieldset $fieldset) use($rule) {
+
+                    $form->fieldset(function (Fieldset $fieldset) use($rule) {
+                        $fieldset->legend($rule->exists ? 'Edit IP Rule' : 'New IP Rule');
                         $this->setupFieldset($fieldset, $rule);
                     });
 
