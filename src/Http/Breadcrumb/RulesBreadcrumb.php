@@ -69,7 +69,7 @@ class RulesBreadcrumb extends Navigation
         if (!$this->breadcrumbs->exists($name)) {
             $this->breadcrumbs->register($name, function(Generator $breadcrumbs) use($rule) {
                 $trans = 'antares/ban_management::messages.breadcrumbs';
-                $name  = $rule->exists ? trans($trans . '.ip_edit', ['ip' => $rule->getValue()]) : trans($trans . '.ip_create');
+                $name  = $rule->exists ? trans($trans . '.ip_edit', ['id' => $rule->id, 'ip' => $rule->getValue()]) : trans($trans . '.ip_create');
                 $breadcrumbs->parent(self::$name . '-rules');
                 $breadcrumbs->push($name);
             });

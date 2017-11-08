@@ -190,7 +190,11 @@ class RulesDataTable extends DataTable
                             'data-selectAR--mdl-big' => "true",
                             'data-column'            => 3,
                             'class'                  => 'ban_management-select-status mr24 select2--prefix',
-        ]);
+                        ])->parameters([
+                    'aoColumnDefs' => [
+                        ['width' => '5%', 'targets' => 0],
+                    ]
+                ])->zeroDataLink('Create new IP rule', handles('antares::ban_management/rules/create'));
     }
 
     /**

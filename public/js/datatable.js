@@ -1,9 +1,4 @@
-(function ($, document) {
-    'use strict';
-    $('input.datepicker-expired_at').datetimepicker({
-        timepicker: false,
-        format: 'Y-m-d'
-    });
+$(document).ready(function () {
 
     $(document).on('change', '.ban_management-select-status', function () {
         var
@@ -22,4 +17,4 @@
         api.column(columnId).search(val, true, false).draw();
     });
 
-})(jQuery, document);
+});

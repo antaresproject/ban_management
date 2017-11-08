@@ -66,7 +66,7 @@ class BannedEmailsBreadcrumb extends Navigation
 
         $this->breadcrumbs->register($name, function(Generator $breadcrumbs) use($bannedEmail) {
             $trans = 'antares/ban_management::messages.breadcrumbs';
-            $name  = $bannedEmail->exists ? trans($trans . '.banned_email_edit', ['email' => $bannedEmail->getEmail()]) : trans($trans . '.banned_email_new');
+            $name  = $bannedEmail->exists ? trans($trans . '.banned_email_edit', ['id' => $bannedEmail->id, 'email' => $bannedEmail->getEmail()]) : trans($trans . '.banned_email_new');
 
             $breadcrumbs->parent(self::$name . '-bannedemails');
             $breadcrumbs->push($name);

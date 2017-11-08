@@ -19,10 +19,10 @@
  */
 return [
     'breadcrumbs'       => [
-        'banned_email_edit' => 'Banned Email :email',
+        'banned_email_edit' => 'Edit: #:id, :email',
         'banned_email_new'  => 'New Banned Email',
         'ban_management'    => 'Ban Management',
-        'ip_edit'           => 'IP :ip',
+        'ip_edit'           => 'Edit: #:id, :ip',
         'ip_create'         => 'New IP'
     ],
     'too_many_requests' => 'Too many requests'
