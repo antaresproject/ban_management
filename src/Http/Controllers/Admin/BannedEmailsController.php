@@ -46,6 +46,7 @@ class BannedEmailsController extends AdminController implements BannedEmailListe
     {
         parent::__construct();
         $this->processor = $processor;
+        active_menu_route('ban_management/rules/datatable');
     }
 
     /**

@@ -24,9 +24,9 @@ return [
         ],
     ],
     'ddos'   => [
-        'enabled'      => true,
+        'enabled'      => false,
         'redirect'     => '/302.html',
-        'interval'     => 35,
+        'interval'     => 135,
         'enable_after' => 60
     ]
 ];
