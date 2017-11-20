@@ -62,7 +62,7 @@ class DDoSService
             return $this;
         }
         if (!isset($_SESSION) && php_sapi_name() !== 'cli') {
-            session_start();
+            @session_start();
         }
         $interval = array_get($this->config, 'interval', 5);
         if (isset($_SESSION['last_request_count']) && $_SESSION['last_session_request'] > (time() - $interval)) {
