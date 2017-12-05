@@ -89,7 +89,9 @@ class ConfigStoreListener
 
             return $securityFormSubmitted->listener->onSuccess(trans('antares/ban_management::response.config.success'));
         } catch (Exception $e) {
-            Log::emergency($e->getMessage());
+            vdump($e);
+            exit;
+            Log::error($e);
             return $securityFormSubmitted->listener->onFail($e->getMessage());
         }
     }
@@ -101,8 +103,8 @@ class ConfigStoreListener
      */
     protected function storeExtensionOptions(array $options)
     {
-        $component          = Component::findOneByName('antaresproject/module-ban_management');
-        $component->options = array_merge($component->options, $options);
+        $component          = Component::findByVendorAndName('antaresproject', 'ban_management');
+        $component->options = !is_null($component) ? array_merge($component->options, $options) : $options;
         $component->save();
     }
 
