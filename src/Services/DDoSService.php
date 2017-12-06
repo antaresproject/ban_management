@@ -58,7 +58,7 @@ class DDoSService
      */
     public function run()
     {
-        if (request()->ajax()) {
+        if (request()->ajax() or array_get($this->config, 'enabled', false) === false) {
             return $this;
         }
         if (!isset($_SESSION) && php_sapi_name() !== 'cli') {
