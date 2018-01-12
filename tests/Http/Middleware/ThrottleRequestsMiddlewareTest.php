@@ -42,6 +42,8 @@ class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
         $this->addProvider(\Antares\Modules\BanManagement\BanManagementServiceProvider::class);
         parent::setUp();
 
+
+
         $this->kernel      = m::mock('\Illuminate\Contracts\Console\Kernel');
         $this->rateLimiter = $this->app->make(RateLimiter::class);
         $this->app->instance('\Illuminate\Contracts\Console\Kernel', $this->kernel);
@@ -52,6 +54,17 @@ class ThrottleRequestsMiddlewareTest extends ApplicationTestCase
         for ($i = 0; $i < $times; ++$i) {
             $this->call('GET', 'throttle-test-route');
         }
+    }
+
+    public function testNotBannedRequest()
+    {
+        $this->app->router->get('throttle-test-route', ['middleware' => [ThrottleRequestsMiddleware::class . ':10'], function () {
+                return 'next request';
+            }]);
+        $this->hit(1);
+        //$this->assertResponseOk();
+        $this->hit(10);
+        //$this->assertResponseStatus(200);
     }
 
     public function testBannedRequest()
